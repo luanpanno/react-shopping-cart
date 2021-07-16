@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig-paths.json",
   "compilerOptions": {
     "target": "es5",
     "lib": [
@@ -10,7 +11,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
@@ -21,6 +22,10 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "tests"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

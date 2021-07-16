@@ -23,13 +23,28 @@
       "error",
       {
         "newlinesBetween": "always",
-        "groups": ["module", ["parent", "sibling", "index"]],
+        "groups": [
+          "module",
+          [
+            "/^@assets/",
+            "/^@components/",
+            "/^@containers/",
+            "/^@pages/"
+          ],
+          [
+            "/^@models/",
+            "/^@services/",
+            "/^@contexts/"
+          ],
+          ["parent", "sibling", "index"]
+        ],
         "alphabetize": {
           "order": "asc",
           "ignoreCase": true
         }
       }
-    ],
+    ]
+,
     "import/prefer-default-export": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-empty-interface": [

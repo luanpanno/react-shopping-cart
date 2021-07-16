@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 
-import Card from '../../components/Card';
-import Loading from '../../components/Loading';
-import { useProduct } from '../../shared/contexts/ProductContext';
+import Card from '@components/Card';
+import Loading from '@components/Loading';
+
+import { useProduct } from '@contexts/ProductContext';
+
 import { Container } from './styles';
 
 const Home = () => {

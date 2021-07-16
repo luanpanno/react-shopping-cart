@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 
-import { Product } from '../models/domain/Product';
+import { Product } from '@models/domain/Product';
 
 export class ProductService {
   constructor(private api: AxiosInstance) {}

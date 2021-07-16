@@ -1,10 +1,12 @@
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { GlobalStyles } from './assets/styles/GlobalStyles';
-import { theme } from './assets/styles/Theme';
+import { GlobalStyles } from '@assets/styles/GlobalStyles';
+import { theme } from '@assets/styles/Theme';
+
+import { ProductProvider } from '@contexts/ProductContext';
+
 import Routes from './routes';
-import { ProductProvider } from './shared/contexts/ProductContext';
 
 function App() {
   return (

@@ -1,4 +1,5 @@
-import { Product } from '../../shared/models/domain/Product';
+import { Product } from '@models/domain/Product';
+
 import { Container } from './styles';
 
 interface Props {

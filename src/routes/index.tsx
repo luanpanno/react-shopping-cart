@@ -1,8 +1,8 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Layout from '../containers/Layout';
-import Cart from '../pages/Cart';
-import Home from '../pages/Home';
+import Layout from '@containers/Layout';
+import Cart from '@pages/Cart';
+import Home from '@pages/Home';
 
 const Routes = () => {
   return (

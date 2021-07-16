@@ -1,8 +1,8 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { Product } from '../models/domain/Product';
-import { productService } from '../services';
+import { Product } from '@models/domain/Product';
+import { productService } from '@services/index';
 
 export interface Context {
   products: Product[];

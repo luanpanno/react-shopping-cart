@@ -1,7 +1,8 @@
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
-import LivenLogo from '../../../assets/imgs/logo-liven.webp';
+import LivenLogo from '@assets/imgs/logo-liven.webp';
+
 import Searchbar from './Searchbar';
 import { Container } from './styles';
 
