@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './assets/styles/GlobalStyles';
 import { theme } from './assets/styles/Theme';
 import Routes from './routes';
+import { ProductProvider } from './shared/contexts/ProductContext';
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       <GlobalStyles />
 
       <BrowserRouter>
-        <Routes />
+        <ProductProvider>
+          <Routes />
+        </ProductProvider>
       </BrowserRouter>
     </ThemeProvider>
   );
