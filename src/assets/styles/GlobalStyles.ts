@@ -15,4 +15,11 @@ export const GlobalStyles = createGlobalStyle`
       outline: 0;
     }
   }
+
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
 `;

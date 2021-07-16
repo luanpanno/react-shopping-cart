@@ -1,10 +1,9 @@
 import { RiShoppingCart2Line } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
 
 import LivenLogo from '@assets/imgs/logo-liven.webp';
+import Searchbar from '@components/Searchbar';
 
-import Searchbar from './Searchbar';
-import { Container } from './styles';
+import { Container, CartLink } from './styles';
 
 const Header = () => {
   return (
@@ -13,9 +12,9 @@ const Header = () => {
 
       <Searchbar />
 
-      <Link to="/carrinho">
+      <CartLink to="/carrinho">
         <RiShoppingCart2Line />
-      </Link>
+      </CartLink>
     </Container>
   );
 };
