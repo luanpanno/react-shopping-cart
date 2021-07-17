@@ -52,9 +52,6 @@ export const Text = styled.div`
       align-items: center;
       justify-content: space-between;
 
-      .name {
-      }
-
       svg {
         font-size: 1.4rem;
         color: ${(props) => props.theme.colors.secondary};

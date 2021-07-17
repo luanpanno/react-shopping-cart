@@ -8,7 +8,7 @@ import Content from '@containers/Content';
 
 import { useStore } from '@contexts/StoreContext';
 
-import { Container } from './styles';
+import { Container, CartContainer, Total, FinishContainer } from './styles';
 
 const Cart = () => {
   const { search } = useLocation();
@@ -33,9 +33,19 @@ const Cart = () => {
           <NoContentText>Carrinho vazio.</NoContentText>
         )}
 
-        {cartProducts?.map((product) => {
-          return <CartItem cartItem={product} />;
-        })}
+        <CartContainer>
+          {cartProducts?.map((product) => {
+            return <CartItem cartItem={product} />;
+          })}
+        </CartContainer>
+
+        <Total>
+          Total de <span>R$ 0,00</span>
+        </Total>
+
+        <FinishContainer>
+          <button type="button">Finalizar compra</button>
+        </FinishContainer>
       </Content>
     </Container>
   );
