@@ -79,7 +79,8 @@ export const Quantity = styled.div`
 export const Price = styled.span`
   align-self: flex-start;
   margin-top: 18px;
-  text-align: center;
+  text-align: right;
   color: ${(props) => props.theme.colors.primary};
   font-weight: bold;
+  width: 150px;
 `;

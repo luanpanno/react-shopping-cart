@@ -12,7 +12,12 @@ interface Props {
 }
 
 const CartItem: React.FC<Props> = ({ cartItem }) => {
-  const { products, handleCartProducts } = useStore();
+  const {
+    products,
+    handleCartProducts,
+    handleCartProductQuantity,
+    handleCartProductInputQuantityChange,
+  } = useStore();
   const product = useMemo(
     () => products?.find((item) => item.id === cartItem.id),
     [cartItem, products]
@@ -22,6 +27,10 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
     confirmHandler('Tem certeza que deseja remover este produto?', () => {
       handleCartProducts(product);
     });
+  }
+
+  function handleQuantityChange(sum: number) {
+    handleCartProductQuantity(product.id, cartItem.quantity + sum);
   }
 
   return (
@@ -37,15 +46,25 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
       </ProductInfo>
       <Quantity>
         <div className="field">
-          <button type="button">-</button>
-          <input type="text" value={cartItem.quantity} onChange={() => {}} />
-          <button type="button">+</button>
+          <button type="button" onClick={() => handleQuantityChange(-1)}>
+            -
+          </button>
+          <input
+            type="text"
+            value={cartItem.quantity}
+            onChange={(e) =>
+              handleCartProductInputQuantityChange(e, product?.id)
+            }
+          />
+          <button type="button" onClick={() => handleQuantityChange(1)}>
+            +
+          </button>
         </div>
         <button type="button" onClick={handleDeleteProduct}>
           Excluir
         </button>
       </Quantity>
-      <Price>R$ {product?.price}</Price>
+      <Price>R$ {cartItem.total.toFixed(2)}</Price>
     </Container>
   );
 };
