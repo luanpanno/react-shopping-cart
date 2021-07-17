@@ -4,12 +4,18 @@ import styled from 'styled-components';
 export const Container = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   height: 75px;
   background-color: ${(props) => props.theme.colors.primary};
-  padding: 0 25%;
-  /* column-gap: 48px; */
+`;
+
+export const Content = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
 
   & > a img {
     height: 50px;

@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
 import { RiHeartLine } from 'react-icons/ri';
 
+import { useProduct } from '@contexts/ProductContext';
 import { Product } from '@models/domain/Product';
 
 import { Container, ImgContainer, Text, AddCartButton } from './styles';
@@ -9,6 +11,12 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ product }) => {
+  const { handleCartProducts, cartProducts } = useProduct();
+  const alreadyInCart = useMemo(
+    () => cartProducts?.some((item) => item.id === product.id),
+    [cartProducts, product]
+  );
+
   return (
     <Container>
       <ImgContainer>
@@ -26,7 +34,15 @@ const Card: React.FC<Props> = ({ product }) => {
         </div>
         <span className="price">R$ {product?.price}</span>
       </Text>
-      <AddCartButton type="button">Adicionar ao carrinho</AddCartButton>
+      <AddCartButton
+        type="button"
+        onClick={() => handleCartProducts(product)}
+        selected={alreadyInCart}
+      >
+        <span>
+          {alreadyInCart ? 'Adicionado ao carrinho!' : 'Adicionar ao carrinho'}
+        </span>
+      </AddCartButton>
     </Container>
   );
 };

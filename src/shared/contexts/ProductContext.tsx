@@ -1,13 +1,15 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { Product } from '@models/domain/Product';
+import { CartProduct, Product } from '@models/domain/Product';
 import { productService } from '@services/index';
 
 export interface Context {
   products: Product[];
+  cartProducts: CartProduct[];
   loadingProducts: boolean;
   listProducts: () => Promise<void>;
+  handleCartProducts: (product: Product) => void;
 }
 
 export const ProductContext = createContext<Context>({} as Context);
@@ -15,6 +17,7 @@ export const ProductContext = createContext<Context>({} as Context);
 export const ProductProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(false);
+  const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
 
   const listProducts = useCallback(async () => {
     setLoadingProducts(true);
@@ -32,9 +35,31 @@ export const ProductProvider: React.FC = ({ children }) => {
     }
   }, []);
 
+  const handleCartProducts = useCallback((product: Product) => {
+    setCartProducts((current) => {
+      if (current.some((item) => item.id === product.id)) {
+        return current.filter((item) => item.id !== product.id);
+      }
+
+      return [
+        ...current,
+        {
+          id: product.id,
+          quantity: 1,
+        },
+      ];
+    });
+  }, []);
+
   return (
     <ProductContext.Provider
-      value={{ products, loadingProducts, listProducts }}
+      value={{
+        products,
+        loadingProducts,
+        listProducts,
+        handleCartProducts,
+        cartProducts,
+      }}
     >
       {children}
     </ProductContext.Provider>

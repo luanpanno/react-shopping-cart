@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface AddCartButtonProps {
+  selected?: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,8 +76,9 @@ export const Text = styled.div`
   }
 `;
 
-export const AddCartButton = styled.button`
-  background-color: ${(props) => props.theme.colors.secondary};
+export const AddCartButton = styled.button<AddCartButtonProps>`
+  background-color: ${(props) =>
+    props.selected ? props.theme.colors.yellow : props.theme.colors.secondary};
   color: white;
   padding: 12px 0;
   border-bottom-left-radius: 6px;
@@ -82,5 +87,15 @@ export const AddCartButton = styled.button`
 
   &:hover {
     opacity: 0.9;
+    background-color: ${(props) => props.selected && props.theme.colors.red};
+
+    span {
+      display: ${(props) => props.selected && 'none'};
+    }
+
+    &::after {
+      display: ${(props) => !props.selected && 'none'};
+      content: 'Remover do carrinho';
+    }
   }
 `;
