@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import CartItem from '@components/CartItem';
 import Loading from '@components/Loading';
 import NoContentText from '@components/NoContentText';
 import Content from '@containers/Content';
@@ -31,6 +32,10 @@ const Cart = () => {
         {!loadingProducts && cartProducts?.length <= 0 && (
           <NoContentText>Carrinho vazio.</NoContentText>
         )}
+
+        {cartProducts?.map((product) => {
+          return <CartItem cartItem={product} />;
+        })}
       </Content>
     </Container>
   );
