@@ -14,6 +14,18 @@ const Cart = () => {
   const { search } = useLocation();
   const { loadingProducts, listProducts, cartProducts } = useStore();
   const query = useMemo(() => new URLSearchParams(search).get('q'), [search]);
+  const cartTotal = useMemo(
+    () =>
+      cartProducts
+        ?.map((item) => item.total)
+        ?.reduce((cur, acc) => {
+          let amount = acc;
+          amount += cur;
+
+          return amount;
+        }),
+    [cartProducts]
+  );
 
   useEffect(() => {
     listProducts();
@@ -40,7 +52,10 @@ const Cart = () => {
         </CartContainer>
 
         <Total>
-          Total de <span>R$ 0,00</span>
+          Total de{' '}
+          <span>
+            R$ {(cartProducts?.length > 0 ? cartTotal : 0).toFixed(2)}
+          </span>
         </Total>
 
         <FinishContainer>

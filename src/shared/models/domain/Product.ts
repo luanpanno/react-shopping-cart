@@ -10,4 +10,5 @@ export interface Product {
 export interface CartProduct {
   id: string;
   quantity: number;
+  total: number;
 }

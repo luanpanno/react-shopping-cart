@@ -46,6 +46,7 @@ export const StoreProvider: React.FC = ({ children }) => {
         {
           id: product.id,
           quantity: 1,
+          total: +product.price,
         },
       ];
     });
