@@ -3,6 +3,7 @@ import { RiHeartLine } from 'react-icons/ri';
 
 import { useStore } from '@contexts/StoreContext';
 import { Product } from '@models/domain/Product';
+import { masks } from '@utils/masks';
 
 import { Container, ImgContainer, Text, AddCartButton } from './styles';
 
@@ -32,7 +33,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
           </div>
           <span className="stock">{product?.stock} restantes</span>
         </div>
-        <span className="price">R$ {product?.price}</span>
+        <span className="price">R$ {masks.decimal(product?.price)}</span>
       </Text>
       <AddCartButton
         type="button"

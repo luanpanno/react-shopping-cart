@@ -4,6 +4,7 @@ import confirmHandler from '@components/ConfirmAlert';
 
 import { useStore } from '@contexts/StoreContext';
 import { CartProduct } from '@models/domain/Product';
+import { masks } from '@utils/masks';
 
 import { Container, ProductInfo, Quantity, Price } from './styles';
 
@@ -64,7 +65,7 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
           Excluir
         </button>
       </Quantity>
-      <Price>R$ {cartItem.total.toFixed(2)}</Price>
+      <Price>R$ {masks.decimal(cartItem.total.toFixed(2))}</Price>
     </Container>
   );
 };

@@ -7,6 +7,7 @@ import NoContentText from '@components/NoContentText';
 import Content from '@containers/Content';
 
 import { useStore } from '@contexts/StoreContext';
+import { masks } from '@utils/masks';
 
 import { Container, CartContainer, Total, FinishContainer } from './styles';
 
@@ -56,7 +57,7 @@ const Cart = () => {
             </CartContainer>
 
             <Total>
-              Total de <span>R$ {cartTotal.toFixed(2)}</span>
+              Total de <span>R$ {masks.decimal(cartTotal.toFixed(2))}</span>
             </Total>
 
             <FinishContainer>

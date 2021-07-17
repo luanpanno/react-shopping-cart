@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { CartProduct, Product } from '@models/domain/Product';
 import { productService } from '@services/index';
 
-import { masks } from '../helpers/masks';
+import { masks } from '../utils/masks';
 
 export interface Context {
   products: Product[];

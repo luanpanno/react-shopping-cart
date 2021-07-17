@@ -32,6 +32,7 @@
             "/^@pages/"
           ],
           [
+            "/^@utils/",
             "/^@models/",
             "/^@services/",
             "/^@contexts/"
