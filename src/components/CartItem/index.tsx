@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useProduct } from '@contexts/ProductContext';
+import { useStore } from '@contexts/StoreContext';
 import { CartProduct } from '@models/domain/Product';
 
 import { Container } from './styles';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const CartItem: React.FC<Props> = ({ cartItem }) => {
-  const { products } = useProduct();
+  const { products } = useStore();
   const product = useMemo(
     () => products?.find((item) => item.id === cartItem.id),
     [cartItem, products]

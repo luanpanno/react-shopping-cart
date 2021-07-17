@@ -7,13 +7,13 @@ import NoContentText from '@components/NoContentText';
 import ProductCard from '@components/ProductCard';
 import Content from '@containers/Content';
 
-import { useProduct } from '@contexts/ProductContext';
+import { useStore } from '@contexts/StoreContext';
 
 import { Container, HeaderContent, Products } from './styles';
 
 const Home = () => {
   const { search } = useLocation();
-  const { products, loadingProducts, listProducts } = useProduct();
+  const { products, loadingProducts, listProducts } = useStore();
   const query = useMemo(() => new URLSearchParams(search).get('q'), [search]);
   const filteredProducts = useMemo(() => {
     if (query) {

@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '@assets/styles/GlobalStyles';
 import { theme } from '@assets/styles/Theme';
 
-import { ProductProvider } from '@contexts/ProductContext';
+import { StoreProvider } from '@contexts/StoreContext';
 
 import Routes from './routes';
 
@@ -14,9 +14,9 @@ function App() {
       <GlobalStyles />
 
       <BrowserRouter>
-        <ProductProvider>
+        <StoreProvider>
           <Routes />
-        </ProductProvider>
+        </StoreProvider>
       </BrowserRouter>
     </ThemeProvider>
   );

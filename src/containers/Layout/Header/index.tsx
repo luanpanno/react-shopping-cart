@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import LivenLogo from '@assets/imgs/logo-liven.webp';
 import Searchbar from '@components/Searchbar';
 
-import { useProduct } from '@contexts/ProductContext';
+import { useStore } from '@contexts/StoreContext';
 
 import { Container, Content, CartLink } from './styles';
 
 const Header = () => {
-  const { cartProducts } = useProduct();
+  const { cartProducts } = useStore();
 
   return (
     <Container>

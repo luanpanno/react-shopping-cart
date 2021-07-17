@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { RiHeartLine } from 'react-icons/ri';
 
-import { useProduct } from '@contexts/ProductContext';
+import { useStore } from '@contexts/StoreContext';
 import { Product } from '@models/domain/Product';
 
 import { Container, ImgContainer, Text, AddCartButton } from './styles';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ProductCard: React.FC<Props> = ({ product }) => {
-  const { handleCartProducts, cartProducts } = useProduct();
+  const { handleCartProducts, cartProducts } = useStore();
   const alreadyInCart = useMemo(
     () => cartProducts?.some((item) => item.id === product.id),
     [cartProducts, product]

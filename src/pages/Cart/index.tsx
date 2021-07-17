@@ -6,13 +6,13 @@ import Loading from '@components/Loading';
 import NoContentText from '@components/NoContentText';
 import Content from '@containers/Content';
 
-import { useProduct } from '@contexts/ProductContext';
+import { useStore } from '@contexts/StoreContext';
 
 import { Container } from './styles';
 
 const Cart = () => {
   const { search } = useLocation();
-  const { loadingProducts, listProducts, cartProducts } = useProduct();
+  const { loadingProducts, listProducts, cartProducts } = useStore();
   const query = useMemo(() => new URLSearchParams(search).get('q'), [search]);
 
   useEffect(() => {

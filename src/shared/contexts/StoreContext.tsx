@@ -12,9 +12,9 @@ export interface Context {
   handleCartProducts: (product: Product) => void;
 }
 
-export const ProductContext = createContext<Context>({} as Context);
+export const StoreContext = createContext<Context>({} as Context);
 
-export const ProductProvider: React.FC = ({ children }) => {
+export const StoreProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
@@ -52,7 +52,7 @@ export const ProductProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <ProductContext.Provider
+    <StoreContext.Provider
       value={{
         products,
         loadingProducts,
@@ -62,8 +62,8 @@ export const ProductProvider: React.FC = ({ children }) => {
       }}
     >
       {children}
-    </ProductContext.Provider>
+    </StoreContext.Provider>
   );
 };
 
-export const useProduct = () => useContext(ProductContext);
+export const useStore = () => useContext(StoreContext);
