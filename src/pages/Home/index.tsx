@@ -1,40 +1,44 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import { RiLayoutGridLine, RiLayoutRowLine } from 'react-icons/ri';
 
 import Card from '@components/Card';
 import Loading from '@components/Loading';
 
 import { useProduct } from '@contexts/ProductContext';
 
-import { Container } from './styles';
+import { Container, Content, Products } from './styles';
 
 const Home = () => {
-  const { products, setProducts, listProducts } = useProduct();
-  const [loadingProducts, setLoadingProducts] = useState(false);
-  const mounted = useRef(true);
+  const { products, loadingProducts, listProducts } = useProduct();
 
   useEffect(() => {
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
-
-  useEffect(() => {
-    setLoadingProducts(true);
-
-    listProducts()
-      .then((response) => {
-        if (mounted.current) setProducts(response);
-      })
-      .finally(() => setLoadingProducts(false));
-  }, [listProducts, setProducts]);
+    listProducts();
+  }, [listProducts]);
 
   if (loadingProducts) return <Loading />;
 
   return (
     <Container>
-      {products?.map((product) => {
-        return <Card product={product} />;
-      })}
+      <Content>
+        <div className="title">
+          <h1>Produtos</h1>
+          <div>
+            <span>{products?.length} resultados</span>
+            <button type="button">
+              <RiLayoutRowLine />
+            </button>
+            <button type="button" className="active">
+              <RiLayoutGridLine />
+            </button>
+          </div>
+        </div>
+
+        <Products>
+          {products?.map((product) => {
+            return <Card key={product.id} product={product} />;
+          })}
+        </Products>
+      </Content>
     </Container>
   );
 };
