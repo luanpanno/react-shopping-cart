@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 
+import confirmHandler from '@components/ConfirmAlert';
+
 import { useStore } from '@contexts/StoreContext';
 import { CartProduct } from '@models/domain/Product';
 
@@ -10,11 +12,17 @@ interface Props {
 }
 
 const CartItem: React.FC<Props> = ({ cartItem }) => {
-  const { products } = useStore();
+  const { products, handleCartProducts } = useStore();
   const product = useMemo(
     () => products?.find((item) => item.id === cartItem.id),
     [cartItem, products]
   );
+
+  function handleDeleteProduct() {
+    confirmHandler('Tem certeza que deseja remover este produto?', () => {
+      handleCartProducts(product);
+    });
+  }
 
   return (
     <Container>
@@ -30,10 +38,12 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
       <Quantity>
         <div className="field">
           <button type="button">-</button>
-          <input type="text" value={cartItem.quantity} />
+          <input type="text" value={cartItem.quantity} onChange={() => {}} />
           <button type="button">+</button>
         </div>
-        <button type="button">Excluir</button>
+        <button type="button" onClick={handleDeleteProduct}>
+          Excluir
+        </button>
       </Quantity>
       <Price>R$ {product?.price}</Price>
     </Container>

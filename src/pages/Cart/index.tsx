@@ -16,14 +16,16 @@ const Cart = () => {
   const query = useMemo(() => new URLSearchParams(search).get('q'), [search]);
   const cartTotal = useMemo(
     () =>
-      cartProducts
-        ?.map((item) => item.total)
-        ?.reduce((cur, acc) => {
-          let amount = acc;
-          amount += cur;
+      cartProducts?.length > 0
+        ? cartProducts
+            ?.map((item) => item.total)
+            ?.reduce((cur, acc) => {
+              let amount = acc;
+              amount += cur;
 
-          return amount;
-        }),
+              return amount;
+            })
+        : 0,
     [cartProducts]
   );
 
@@ -47,15 +49,12 @@ const Cart = () => {
 
         <CartContainer>
           {cartProducts?.map((product) => {
-            return <CartItem cartItem={product} />;
+            return <CartItem key={product.id} cartItem={product} />;
           })}
         </CartContainer>
 
         <Total>
-          Total de{' '}
-          <span>
-            R$ {(cartProducts?.length > 0 ? cartTotal : 0).toFixed(2)}
-          </span>
+          Total de <span>R$ {cartTotal.toFixed(2)}</span>
         </Total>
 
         <FinishContainer>

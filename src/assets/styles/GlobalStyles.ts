@@ -2,6 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 import { Reset } from './Reset';
 
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 export const GlobalStyles = createGlobalStyle`
   ${Reset}
 
@@ -22,4 +24,9 @@ export const GlobalStyles = createGlobalStyle`
     outline: none;
     background-color: transparent;
   }
+
+  .react-confirm-alert-overlay {
+      background: rgba(0, 0, 0, 0.1);
+  }
+
 `;
