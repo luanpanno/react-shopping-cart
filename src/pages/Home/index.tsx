@@ -35,7 +35,7 @@ const Home = () => {
         title="Produtos"
         headerComplements={
           <HeaderContent>
-            <span>{filteredProducts?.length} resultados</span>
+            <span>{filteredProducts?.length} resultado(s)</span>
             <button type="button">
               <RiLayoutRowLine />
             </button>

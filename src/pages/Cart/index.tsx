@@ -38,7 +38,7 @@ const Cart = () => {
       <Content
         title="Carrinho"
         headerComplements={
-          <span>{cartProducts?.length} produtos adicionados</span>
+          <span>{cartProducts?.length} produto(s) adicionados</span>
         }
       >
         {loadingProducts && cartProducts?.length <= 0 && <Loading />}
@@ -47,19 +47,23 @@ const Cart = () => {
           <NoContentText>Carrinho vazio.</NoContentText>
         )}
 
-        <CartContainer>
-          {cartProducts?.map((product) => {
-            return <CartItem key={product.id} cartItem={product} />;
-          })}
-        </CartContainer>
+        {cartProducts?.length > 0 && (
+          <>
+            <CartContainer>
+              {cartProducts?.map((product) => {
+                return <CartItem key={product.id} cartItem={product} />;
+              })}
+            </CartContainer>
 
-        <Total>
-          Total de <span>R$ {cartTotal.toFixed(2)}</span>
-        </Total>
+            <Total>
+              Total de <span>R$ {cartTotal.toFixed(2)}</span>
+            </Total>
 
-        <FinishContainer>
-          <button type="button">Finalizar compra</button>
-        </FinishContainer>
+            <FinishContainer>
+              <button type="button">Finalizar compra</button>
+            </FinishContainer>
+          </>
+        )}
       </Content>
     </Container>
   );
