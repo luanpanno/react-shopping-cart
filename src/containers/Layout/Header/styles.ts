@@ -8,6 +8,8 @@ export const Container = styled.header`
   width: 100%;
   height: 75px;
   background-color: ${(props) => props.theme.colors.primary};
+  position: sticky;
+  top: 0;
 `;
 
 export const Content = styled.header`
@@ -33,8 +35,20 @@ export const CartLink = styled(Link)`
   align-items: center;
   justify-content: center;
   transition: background 200ms;
+  position: relative;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  span {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: ${(props) => props.theme.colors.secondary};
+    border-radius: 50%;
+    font-size: 0.9rem;
+    color: white;
+    padding: 4px 6px;
   }
 `;
