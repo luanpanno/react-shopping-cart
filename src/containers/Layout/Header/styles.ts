@@ -11,7 +11,7 @@ export const Container = styled.header`
   padding: 0 25%;
   /* column-gap: 48px; */
 
-  & > img {
+  & > a img {
     height: 50px;
   }
 `;

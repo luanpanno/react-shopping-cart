@@ -6,12 +6,12 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 350px;
-  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   transition: all 400ms;
 
   &:hover {
-    box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 8px 4px 4px rgba(0, 0, 0, 0.1);
   }
 `;
 
