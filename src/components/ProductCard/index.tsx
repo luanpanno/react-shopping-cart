@@ -10,7 +10,7 @@ interface Props {
   product: Product;
 }
 
-const Card: React.FC<Props> = ({ product }) => {
+const ProductCard: React.FC<Props> = ({ product }) => {
   const { handleCartProducts, cartProducts } = useProduct();
   const alreadyInCart = useMemo(
     () => cartProducts?.some((item) => item.id === product.id),
@@ -47,4 +47,4 @@ const Card: React.FC<Props> = ({ product }) => {
   );
 };
 
-export default Card;
+export default ProductCard;

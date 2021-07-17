@@ -2,9 +2,9 @@ import { useEffect, useMemo } from 'react';
 import { RiLayoutGridLine, RiLayoutRowLine } from 'react-icons/ri';
 import { useLocation } from 'react-router-dom';
 
-import Card from '@components/Card';
 import Loading from '@components/Loading';
 import NoContentText from '@components/NoContentText';
+import ProductCard from '@components/ProductCard';
 import Content from '@containers/Content';
 
 import { useProduct } from '@contexts/ProductContext';
@@ -53,7 +53,7 @@ const Home = () => {
 
         <Products>
           {filteredProducts?.map((product) => {
-            return <Card key={product.id} product={product} />;
+            return <ProductCard key={product.id} product={product} />;
           })}
         </Products>
       </Content>
