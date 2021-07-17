@@ -29,7 +29,7 @@ export const Total = styled.div`
   }
 `;
 
-export const FinishContainer = styled.div`
+export const CheckoutContainer = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;

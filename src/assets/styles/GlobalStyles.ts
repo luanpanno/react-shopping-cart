@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import { Reset } from './Reset';
 
+import 'react-toastify/dist/ReactToastify.css';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export const GlobalStyles = createGlobalStyle`
