@@ -46,5 +46,10 @@ export const CheckoutContainer = styled.div`
     &:hover {
       opacity: 0.9;
     }
+
+    &:disabled {
+      background-color: #aeaeae;
+      cursor: not-allowed;
+    }
   }
 `;

@@ -1,4 +1,10 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import { toast } from 'react-toastify';
 
 import { CartProduct, Product } from '@models/domain/Product';
@@ -10,9 +16,12 @@ export interface Context {
   products: Product[];
   cartProducts: CartProduct[];
   loadingProducts: boolean;
+  cartTotal: number;
+  productsAmount: number;
+  hasProductWithNoQuantity: boolean;
   listProducts: () => Promise<void>;
   handleCartProducts: (product: Product) => void;
-  handleCartProductQuantity: (id: string, newQuantity: number) => void;
+  handleCartProductQuantity: (id: string, quantity: number) => void;
   handleCartProductInputQuantityChange: (
     e: React.ChangeEvent<HTMLInputElement>,
     id: string
@@ -25,6 +34,38 @@ export const StoreProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
+  const cartTotal = useMemo(
+    () =>
+      cartProducts?.length > 0
+        ? cartProducts
+            ?.map((item) => item.total)
+            ?.reduce((cur, acc) => {
+              let amount = acc;
+              amount += cur;
+
+              return amount;
+            })
+        : 0,
+    [cartProducts]
+  );
+  const productsAmount = useMemo(
+    () =>
+      cartProducts?.length > 0
+        ? cartProducts
+            ?.map((item) => item.quantity)
+            ?.reduce((cur, acc) => {
+              let amount = acc;
+              amount += cur;
+
+              return amount;
+            })
+        : 0,
+    [cartProducts]
+  );
+  const hasProductWithNoQuantity = useMemo(
+    () => cartProducts?.some((product) => product.quantity === 0),
+    [cartProducts]
+  );
 
   const listProducts = useCallback(async () => {
     setLoadingProducts(true);
@@ -60,16 +101,16 @@ export const StoreProvider: React.FC = ({ children }) => {
   }, []);
 
   const handleCartProductQuantity = useCallback(
-    (id: string, newQuantity: number) => {
+    (id: string, quantity: number) => {
       const product = products?.find((item) => item.id === id);
 
-      if (newQuantity < 1 || newQuantity > product.stock) return;
+      if (quantity < 0 || quantity > product.stock) return;
 
       const refreshedproduct: CartProduct = {
         id,
-        quantity: newQuantity,
+        quantity,
         price: +product.price,
-        total: +product.price * newQuantity,
+        total: +product.price * quantity,
       };
 
       setCartProducts((current) =>
@@ -85,7 +126,7 @@ export const StoreProvider: React.FC = ({ children }) => {
       const product = products?.find((item) => item.id === id);
       const quantity = masks.integers(value);
 
-      if (quantity < 1 || quantity > product.stock) return;
+      if (quantity < 0 || quantity > product.stock) return;
 
       handleCartProductQuantity(id, quantity);
     },
@@ -102,6 +143,9 @@ export const StoreProvider: React.FC = ({ children }) => {
         cartProducts,
         handleCartProductQuantity,
         handleCartProductInputQuantityChange,
+        cartTotal,
+        productsAmount,
+        hasProductWithNoQuantity,
       }}
     >
       {children}

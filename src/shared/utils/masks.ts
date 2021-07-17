@@ -12,7 +12,7 @@ export const masks = {
     newValue = chars.join('');
     newValue = integer.format(+newValue);
 
-    return +newValue;
+    return +newValue.replace('.', '');
   },
 
   decimal(value: string | number) {

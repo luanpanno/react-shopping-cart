@@ -14,36 +14,15 @@ import { Container, CartContainer, Total, CheckoutContainer } from './styles';
 
 const Cart = () => {
   const { search } = useLocation();
-  const { loadingProducts, listProducts, cartProducts } = useStore();
+  const {
+    loadingProducts,
+    listProducts,
+    cartProducts,
+    productsAmount,
+    cartTotal,
+    hasProductWithNoQuantity,
+  } = useStore();
   const query = useMemo(() => new URLSearchParams(search).get('q'), [search]);
-  const cartTotal = useMemo(
-    () =>
-      cartProducts?.length > 0
-        ? cartProducts
-            ?.map((item) => item.total)
-            ?.reduce((cur, acc) => {
-              let amount = acc;
-              amount += cur;
-
-              return amount;
-            })
-        : 0,
-    [cartProducts]
-  );
-  const productsAmount = useMemo(
-    () =>
-      cartProducts?.length > 0
-        ? cartProducts
-            ?.map((item) => item.quantity)
-            ?.reduce((cur, acc) => {
-              let amount = acc;
-              amount += cur;
-
-              return amount;
-            })
-        : 0,
-    [cartProducts]
-  );
 
   useEffect(() => {
     listProducts();
@@ -78,7 +57,11 @@ const Cart = () => {
             </Total>
 
             <CheckoutContainer>
-              <button type="button" onClick={handleCheckoutClick}>
+              <button
+                type="button"
+                onClick={handleCheckoutClick}
+                disabled={hasProductWithNoQuantity}
+              >
                 Finalizar compra
               </button>
             </CheckoutContainer>
