@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { RiHeartLine, RiHeartFill } from 'react-icons/ri';
 
+import Tooltip from '@components/Tooltip';
+
 import { useStore } from '@contexts/StoreContext';
 import { Product } from '@models/domain/Product';
 import { masks } from '@utils/masks';
@@ -46,9 +48,12 @@ const ProductCard: React.FC<Props> = ({ product }) => {
               type="button"
               onClick={() => handleLikedProducts(product?.id)}
               selected={alreadyLiked}
+              data-for="like-button"
+              data-tip="Favoritar"
             >
               {alreadyLiked ? <RiHeartFill /> : <RiHeartLine />}
             </LikeButton>
+            <Tooltip id="like-button" />
           </div>
           <span className="stock">{product?.stock} restantes</span>
         </div>

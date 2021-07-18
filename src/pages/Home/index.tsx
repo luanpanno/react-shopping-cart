@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Loading from '@components/Loading';
 import NoContentText from '@components/NoContentText';
 import ProductCard from '@components/ProductCard';
+import Tooltip from '@components/Tooltip';
 import Content from '@containers/Content';
 
 import { useStore } from '@contexts/StoreContext';
@@ -39,12 +40,23 @@ const Home = () => {
       headerComplements={
         <HeaderContent>
           <span>{filteredProducts?.length} resultado(s)</span>
-          <button type="button">
+          <button
+            type="button"
+            data-for="row-layout"
+            data-tip="Exibir em linhas"
+          >
             <RiLayoutRowLine />
           </button>
-          <button type="button" className="active">
+          <Tooltip id="row-layout" />
+          <button
+            type="button"
+            className="active"
+            data-for="grid-layout"
+            data-tip="Exibir em colunas"
+          >
             <RiLayoutGridLine />
           </button>
+          <Tooltip id="grid-layout" />
         </HeaderContent>
       }
     >

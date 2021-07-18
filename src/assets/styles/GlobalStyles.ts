@@ -27,7 +27,12 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .react-confirm-alert-overlay {
-      background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.1);
   }
 
+  .__react_component_tooltip {
+    max-width: 300px;
+    font-size: 0.9rem;
+    white-space: pre-line;
+  }
 `;

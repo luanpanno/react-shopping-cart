@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import LivenLogo from '@assets/imgs/logo-liven.webp';
 import LikedProductsList from '@components/LikedProductsList';
 import Searchbar from '@components/Searchbar';
+import Tooltip from '@components/Tooltip';
 
 import { useStore } from '@contexts/StoreContext';
 
@@ -36,7 +37,11 @@ const Header = () => {
 
         <OutsideClickHandler onOutsideClick={() => setOpenList(false)}>
           <div className="liked">
-            <LikedProductsButton onClick={() => setOpenList((state) => !state)}>
+            <LikedProductsButton
+              onClick={() => setOpenList((state) => !state)}
+              data-for="liked-button"
+              data-tip="Lista de Favoritos"
+            >
               {likedProducts?.length > 0 && (
                 <AmountSpan>
                   {handleAmountNumber(likedProducts?.length)}
@@ -44,16 +49,18 @@ const Header = () => {
               )}
               <RiHeartLine />
             </LikedProductsButton>
+            <Tooltip id="liked-button" />
             {openList && <LikedProductsList />}
           </div>
         </OutsideClickHandler>
 
-        <CartLink to="/carrinho">
+        <CartLink to="/carrinho" data-for="cart-button" data-tip="Carrinho">
           {cartProductsAmount > 0 && (
             <AmountSpan>{handleAmountNumber(cartProductsAmount)}</AmountSpan>
           )}
           <RiShoppingCart2Line />
         </CartLink>
+        <Tooltip id="cart-button" />
       </Content>
     </Container>
   );

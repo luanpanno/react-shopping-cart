@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { RiCloseCircleFill, RiSearch2Line } from 'react-icons/ri';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import Tooltip from '@components/Tooltip';
+
 import { Container, InputWrapper, SearchButton } from './styles';
 
 const Searchbar = () => {
@@ -36,15 +38,29 @@ const Searchbar = () => {
         />
 
         {query && (
-          <button type="button" onClick={clearQuery}>
-            <RiCloseCircleFill />
-          </button>
+          <>
+            <button
+              type="button"
+              onClick={clearQuery}
+              data-for="searchbar-reset"
+              data-tip="Limpar pesquisa"
+            >
+              <RiCloseCircleFill />
+            </button>
+            <Tooltip id="searchbar-reset" />
+          </>
         )}
       </InputWrapper>
 
-      <SearchButton type="button" onClick={handleSearch}>
+      <SearchButton
+        type="button"
+        onClick={handleSearch}
+        data-for="searchbar-search"
+        data-tip="Pesquisar"
+      >
         <RiSearch2Line />
       </SearchButton>
+      <Tooltip id="searchbar-search" />
     </Container>
   );
 };

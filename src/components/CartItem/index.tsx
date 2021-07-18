@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import confirmHandler from '@components/ConfirmAlert';
+import Tooltip from '@components/Tooltip';
 
 import { useStore } from '@contexts/StoreContext';
 import { CartProduct } from '@models/domain/Product';
@@ -62,9 +63,12 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
               type="button"
               onClick={() => handleQuantityChange(-1)}
               disabled={cartItem.quantity <= 0}
+              data-for="decrease-button"
+              data-tip="Diminuir quantidade"
             >
               -
             </button>
+            <Tooltip id="decrease-button" />
             <input
               type="text"
               value={cartItem.quantity || ''}
@@ -76,9 +80,12 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
               type="button"
               onClick={() => handleQuantityChange(1)}
               disabled={cartItem.quantity >= product?.stock}
+              data-for="increase-button"
+              data-tip="Aumentar quantidade"
             >
               +
             </button>
+            <Tooltip id="increase-button" />
           </QuantityField>
           <button type="button" onClick={handleDeleteProduct}>
             Excluir
