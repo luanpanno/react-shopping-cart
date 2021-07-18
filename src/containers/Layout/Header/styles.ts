@@ -11,6 +11,10 @@ export const Container = styled.header`
   position: sticky;
   top: 0;
   z-index: 10;
+
+  .liked {
+    position: relative;
+  }
 `;
 
 export const Content = styled.header`

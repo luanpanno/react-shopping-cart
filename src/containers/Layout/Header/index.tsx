@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { RiHeartLine, RiShoppingCart2Line } from 'react-icons/ri';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { Link } from 'react-router-dom';
 
 import LivenLogo from '@assets/imgs/logo-liven.webp';
+import LikedProductsList from '@components/LikedProductsList';
 import Searchbar from '@components/Searchbar';
 
 import { useStore } from '@contexts/StoreContext';
@@ -16,6 +19,7 @@ import {
 
 const Header = () => {
   const { cartProductsAmount, likedProducts } = useStore();
+  const [openList, setOpenList] = useState(false);
 
   function handleAmountNumber(amount: number) {
     return amount >= 100 ? '+99' : amount;
@@ -30,12 +34,19 @@ const Header = () => {
 
         <Searchbar />
 
-        <LikedProductsButton>
-          {likedProducts?.length > 0 && (
-            <AmountSpan>{handleAmountNumber(likedProducts?.length)}</AmountSpan>
-          )}
-          <RiHeartLine />
-        </LikedProductsButton>
+        <OutsideClickHandler onOutsideClick={() => setOpenList(false)}>
+          <div className="liked">
+            <LikedProductsButton onClick={() => setOpenList((state) => !state)}>
+              {likedProducts?.length > 0 && (
+                <AmountSpan>
+                  {handleAmountNumber(likedProducts?.length)}
+                </AmountSpan>
+              )}
+              <RiHeartLine />
+            </LikedProductsButton>
+            {openList && <LikedProductsList />}
+          </div>
+        </OutsideClickHandler>
 
         <CartLink to="/carrinho">
           {cartProductsAmount > 0 && (
