@@ -1,10 +1,11 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import confirmHandler from '@components/ConfirmAlert';
 import Tooltip from '@components/Tooltip';
 
 import { useStore } from '@contexts/StoreContext';
 import { CartProduct } from '@models/domain/Product';
+import { generateTooltipId } from '@utils/generateTooltipId';
 import { masks } from '@utils/masks';
 
 import {
@@ -30,6 +31,21 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
   const product = useMemo(
     () => products?.find((item) => item.id === cartItem.id),
     [cartItem, products]
+  );
+
+  const getTooltipId = useCallback(
+    (name: string) => {
+      return generateTooltipId(cartItem?.id, name);
+    },
+    [cartItem]
+  );
+
+  const tooltipId = useMemo(
+    () => ({
+      decrease: getTooltipId('decrease'),
+      increase: getTooltipId('increase'),
+    }),
+    [getTooltipId]
   );
 
   function handleDeleteProduct() {
@@ -63,12 +79,12 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
               type="button"
               onClick={() => handleQuantityChange(-1)}
               disabled={cartItem.quantity <= 0}
-              data-for="decrease-button"
+              data-for={tooltipId.decrease}
               data-tip="Diminuir quantidade"
             >
               -
             </button>
-            <Tooltip id="decrease-button" />
+            <Tooltip id={tooltipId.decrease} />
             <input
               type="text"
               value={cartItem.quantity || ''}
@@ -80,12 +96,12 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
               type="button"
               onClick={() => handleQuantityChange(1)}
               disabled={cartItem.quantity >= product?.stock}
-              data-for="increase-button"
+              data-for={tooltipId.increase}
               data-tip="Aumentar quantidade"
             >
               +
             </button>
-            <Tooltip id="increase-button" />
+            <Tooltip id={tooltipId.increase} />
           </QuantityField>
           <button type="button" onClick={handleDeleteProduct}>
             Excluir

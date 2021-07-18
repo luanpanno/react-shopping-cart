@@ -5,6 +5,7 @@ import Tooltip from '@components/Tooltip';
 
 import { useStore } from '@contexts/StoreContext';
 import { Product } from '@models/domain/Product';
+import { generateTooltipId } from '@utils/generateTooltipId';
 import { masks } from '@utils/masks';
 
 import {
@@ -34,6 +35,10 @@ const ProductCard: React.FC<Props> = ({ product }) => {
     () => likedProducts?.some((id) => id === product.id),
     [likedProducts, product]
   );
+  const tooltipId = useMemo(
+    () => generateTooltipId(product?.id, 'like'),
+    [product]
+  );
 
   return (
     <Container>
@@ -48,12 +53,12 @@ const ProductCard: React.FC<Props> = ({ product }) => {
               type="button"
               onClick={() => handleLikedProducts(product?.id)}
               selected={alreadyLiked}
-              data-for="like-button"
+              data-for={tooltipId}
               data-tip="Favoritar"
             >
               {alreadyLiked ? <RiHeartFill /> : <RiHeartLine />}
             </LikeButton>
-            <Tooltip id="like-button" />
+            <Tooltip id={tooltipId} />
           </div>
           <span className="stock">{product?.stock} restantes</span>
         </div>

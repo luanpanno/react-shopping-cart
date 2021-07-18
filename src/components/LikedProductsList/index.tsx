@@ -1,8 +1,10 @@
 import { RiCloseCircleFill } from 'react-icons/ri';
 
 import NoContentText from '@components/NoContentText';
+import Tooltip from '@components/Tooltip';
 
 import { useStore } from '@contexts/StoreContext';
+import { generateTooltipId } from '@utils/generateTooltipId';
 import { masks } from '@utils/masks';
 
 import { Container, Item } from './styles';
@@ -22,6 +24,10 @@ const LikedProductsList = () => {
             const likedProduct = products?.find(
               (product) => product.id === item
             );
+            const tooltipId = generateTooltipId(
+              likedProduct?.id,
+              'liked-products'
+            );
 
             return (
               <Item key={likedProduct?.id}>
@@ -37,9 +43,12 @@ const LikedProductsList = () => {
                 <button
                   type="button"
                   onClick={() => handleLikedProducts(likedProduct?.id)}
+                  data-for={tooltipId}
+                  data-tip="Remover"
                 >
                   <RiCloseCircleFill />
                 </button>
+                <Tooltip id={tooltipId} />
               </Item>
             );
           })}
