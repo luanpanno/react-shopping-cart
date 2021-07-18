@@ -18,7 +18,7 @@ export interface Context {
   cartProducts: CartProduct[];
   loadingProducts: boolean;
   cartTotal: number;
-  productsAmount: number;
+  cartAmount: number;
   hasProductWithNoQuantity: boolean;
   likedProducts: string[];
   listProducts: () => Promise<void>;
@@ -62,7 +62,7 @@ export const StoreProvider: React.FC = ({ children }) => {
         : 0,
     [cartProducts]
   );
-  const productsAmount = useMemo(
+  const cartAmount = useMemo(
     () =>
       cartProducts?.length > 0
         ? cartProducts
@@ -183,7 +183,7 @@ export const StoreProvider: React.FC = ({ children }) => {
         handleCartProductQuantity,
         handleCartProductInputQuantityChange,
         cartTotal,
-        productsAmount,
+        cartAmount,
         hasProductWithNoQuantity,
         handleLikedProducts,
         likedProducts,

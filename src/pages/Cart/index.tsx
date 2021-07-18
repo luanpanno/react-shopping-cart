@@ -18,7 +18,7 @@ const Cart = () => {
     loadingProducts,
     listProducts,
     cartProducts,
-    productsAmount,
+    cartAmount,
     cartTotal,
     hasProductWithNoQuantity,
     products,
@@ -40,7 +40,7 @@ const Cart = () => {
   return (
     <Content
       title="Carrinho"
-      headerComplements={<span>{productsAmount} produto(s) adicionados</span>}
+      headerComplements={<span>{cartAmount} produto(s) adicionados</span>}
     >
       {!loadingProducts && cartProducts?.length <= 0 && (
         <NoContentText>Carrinho vazio.</NoContentText>
