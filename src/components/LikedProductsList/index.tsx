@@ -18,20 +18,23 @@ const LikedProductsList = () => {
         )}
 
         {likedProducts?.map((item) => {
-          const { id, image, name, price } = products?.find(
-            (product) => product.id === item
-          );
+          const likedProduct = products?.find((product) => product.id === item);
 
           return (
-            <Item key={id}>
+            <Item key={likedProduct?.id}>
               <div className="img-container">
-                <img src={image} alt={image} />
+                <img src={likedProduct?.image} alt={likedProduct?.name} />
               </div>
               <div className="text">
-                <span className="name">{name}</span>
-                <span className="price">R$ {masks.decimal(price)}</span>
+                <span className="name">{likedProduct?.name}</span>
+                <span className="price">
+                  R$ {masks.decimal(likedProduct?.price)}
+                </span>
               </div>
-              <button type="button" onClick={() => handleLikedProducts(id)}>
+              <button
+                type="button"
+                onClick={() => handleLikedProducts(likedProduct?.id)}
+              >
                 <RiCloseCircleFill />
               </button>
             </Item>
