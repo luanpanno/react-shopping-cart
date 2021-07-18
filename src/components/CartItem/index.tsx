@@ -24,7 +24,7 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
     handleCartProducts,
     handleCartProductQuantity,
     handleCartProductInputQuantityChange,
-    hasProductWithNoQuantity,
+    cartProducts,
   } = useStore();
   const product = useMemo(
     () => products?.find((item) => item.id === cartItem.id),
@@ -52,7 +52,12 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
           <span className="stock">{product?.stock} restantes</span>
         </div>
         <Quantity>
-          <QuantityField hasError={hasProductWithNoQuantity}>
+          <QuantityField
+            hasError={
+              cartProducts?.find((item) => item.quantity === 0)?.id ===
+              cartItem?.id
+            }
+          >
             <button
               type="button"
               onClick={() => handleQuantityChange(-1)}
