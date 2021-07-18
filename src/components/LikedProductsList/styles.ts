@@ -31,7 +31,7 @@ export const Container = styled.div`
 
 export const Item = styled.li`
   display: grid;
-  grid-template-columns: 50px 1fr 50px;
+  grid-template-columns: 50px 1fr 32px;
   align-items: center;
   gap: 12px;
   align-items: center;

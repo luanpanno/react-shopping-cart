@@ -2,5 +2,6 @@ import styled from 'styled-components';
 
 export const Text = styled.p`
   text-align: center;
-  color: #aaa;
+  color: #cecece;
+  padding: 12px 0;
 `;

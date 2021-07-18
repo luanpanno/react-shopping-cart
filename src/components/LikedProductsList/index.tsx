@@ -1,5 +1,7 @@
 import { RiCloseCircleFill } from 'react-icons/ri';
 
+import NoContentText from '@components/NoContentText';
+
 import { useStore } from '@contexts/StoreContext';
 import { masks } from '@utils/masks';
 
@@ -11,6 +13,10 @@ const LikedProductsList = () => {
   return (
     <Container>
       <ul>
+        {likedProducts?.length <= 0 && (
+          <NoContentText>Nenhum produto favoritado.</NoContentText>
+        )}
+
         {likedProducts?.map((item) => {
           const { id, image, name, price } = products?.find(
             (product) => product.id === item

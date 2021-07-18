@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-interface AddCartButtonProps {
+interface ButtonProps {
   selected?: boolean;
 }
 
@@ -69,7 +69,7 @@ export const Text = styled.div`
   }
 `;
 
-export const LikeButton = styled.button`
+export const LikeButton = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,10 +79,11 @@ export const LikeButton = styled.button`
 
   &:hover {
     transform: scale(1.3);
+    color: ${(props) => props.selected && props.theme.colors.red};
   }
 `;
 
-export const AddCartButton = styled.button<AddCartButtonProps>`
+export const AddCartButton = styled.button<ButtonProps>`
   background-color: ${(props) =>
     props.selected ? props.theme.colors.yellow : props.theme.colors.secondary};
   color: white;

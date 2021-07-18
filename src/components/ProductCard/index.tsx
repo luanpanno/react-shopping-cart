@@ -45,6 +45,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
             <LikeButton
               type="button"
               onClick={() => handleLikedProducts(product?.id)}
+              selected={alreadyLiked}
             >
               {alreadyLiked ? <RiHeartFill /> : <RiHeartLine />}
             </LikeButton>

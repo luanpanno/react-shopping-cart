@@ -49,7 +49,7 @@ const Home = () => {
       }
     >
       {!loadingProducts && filteredProducts?.length <= 0 && (
-        <NoContentText>Nenhum resultado encontrado.</NoContentText>
+        <NoContentText>Nenhum produto encontrado.</NoContentText>
       )}
 
       <Products>
