@@ -10,7 +10,7 @@ import Content from '@containers/Content';
 import { useStore } from '@contexts/StoreContext';
 import { masks } from '@utils/masks';
 
-import { Container, CartContainer, Total, CheckoutContainer } from './styles';
+import { CartContainer, Total, CheckoutContainer } from './styles';
 
 const Cart = () => {
   const { search } = useLocation();
@@ -21,6 +21,7 @@ const Cart = () => {
     productsAmount,
     cartTotal,
     hasProductWithNoQuantity,
+    products,
   } = useStore();
   const query = useMemo(() => new URLSearchParams(search).get('q'), [search]);
 
@@ -32,43 +33,43 @@ const Cart = () => {
     toast.info('Ainda não implementado! Quem sabe depois?');
   }
 
+  if (loadingProducts && (cartProducts?.length <= 0 || products?.length <= 0)) {
+    return <Loading />;
+  }
+
   return (
-    <Container>
-      <Content
-        title="Carrinho"
-        headerComplements={<span>{productsAmount} produto(s) adicionados</span>}
-      >
-        {loadingProducts && cartProducts?.length <= 0 && <Loading />}
+    <Content
+      title="Carrinho"
+      headerComplements={<span>{productsAmount} produto(s) adicionados</span>}
+    >
+      {!loadingProducts && cartProducts?.length <= 0 && (
+        <NoContentText>Carrinho vazio.</NoContentText>
+      )}
 
-        {!loadingProducts && cartProducts?.length <= 0 && (
-          <NoContentText>Carrinho vazio.</NoContentText>
-        )}
+      {cartProducts?.length > 0 && (
+        <>
+          <CartContainer>
+            {cartProducts?.map((product) => {
+              return <CartItem key={product.id} cartItem={product} />;
+            })}
+          </CartContainer>
 
-        {cartProducts?.length > 0 && (
-          <>
-            <CartContainer>
-              {cartProducts?.map((product) => {
-                return <CartItem key={product.id} cartItem={product} />;
-              })}
-            </CartContainer>
+          <Total>
+            Total de <span>R$ {masks.decimal(cartTotal.toFixed(2))}</span>
+          </Total>
 
-            <Total>
-              Total de <span>R$ {masks.decimal(cartTotal.toFixed(2))}</span>
-            </Total>
-
-            <CheckoutContainer>
-              <button
-                type="button"
-                onClick={handleCheckoutClick}
-                disabled={hasProductWithNoQuantity}
-              >
-                Finalizar compra
-              </button>
-            </CheckoutContainer>
-          </>
-        )}
-      </Content>
-    </Container>
+          <CheckoutContainer>
+            <button
+              type="button"
+              onClick={handleCheckoutClick}
+              disabled={hasProductWithNoQuantity}
+            >
+              Finalizar compra
+            </button>
+          </CheckoutContainer>
+        </>
+      )}
+    </Content>
   );
 };
 

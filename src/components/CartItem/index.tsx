@@ -70,7 +70,7 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
             <button
               type="button"
               onClick={() => handleQuantityChange(1)}
-              disabled={cartItem.quantity >= product.stock}
+              disabled={cartItem.quantity >= product?.stock}
             >
               +
             </button>

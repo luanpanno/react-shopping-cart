@@ -9,7 +9,7 @@ import Content from '@containers/Content';
 
 import { useStore } from '@contexts/StoreContext';
 
-import { Container, HeaderContent, Products } from './styles';
+import { HeaderContent, Products } from './styles';
 
 const Home = () => {
   const { search } = useLocation();
@@ -29,35 +29,35 @@ const Home = () => {
     if (!query) listProducts();
   }, [listProducts, query]);
 
+  if (loadingProducts && products?.length <= 0) {
+    return <Loading />;
+  }
+
   return (
-    <Container>
-      <Content
-        title="Produtos"
-        headerComplements={
-          <HeaderContent>
-            <span>{filteredProducts?.length} resultado(s)</span>
-            <button type="button">
-              <RiLayoutRowLine />
-            </button>
-            <button type="button" className="active">
-              <RiLayoutGridLine />
-            </button>
-          </HeaderContent>
-        }
-      >
-        {loadingProducts && products?.length <= 0 && <Loading />}
+    <Content
+      title="Produtos"
+      headerComplements={
+        <HeaderContent>
+          <span>{filteredProducts?.length} resultado(s)</span>
+          <button type="button">
+            <RiLayoutRowLine />
+          </button>
+          <button type="button" className="active">
+            <RiLayoutGridLine />
+          </button>
+        </HeaderContent>
+      }
+    >
+      {!loadingProducts && filteredProducts?.length <= 0 && (
+        <NoContentText>Nenhum resultado encontrado.</NoContentText>
+      )}
 
-        {!loadingProducts && filteredProducts?.length <= 0 && (
-          <NoContentText>Nenhum resultado encontrado.</NoContentText>
-        )}
-
-        <Products>
-          {filteredProducts?.map((product) => {
-            return <ProductCard key={product.id} product={product} />;
-          })}
-        </Products>
-      </Content>
-    </Container>
+      <Products>
+        {filteredProducts?.map((product) => {
+          return <ProductCard key={product.id} product={product} />;
+        })}
+      </Products>
+    </Content>
   );
 };
 

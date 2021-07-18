@@ -2,6 +2,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -30,10 +31,18 @@ export interface Context {
 
 export const StoreContext = createContext<Context>({} as Context);
 
+function getCartProductsOnLocalStorage() {
+  const cartProducts = window.localStorage.getItem('cartProducts');
+
+  return JSON.parse(cartProducts);
+}
+
 export const StoreProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loadingProducts, setLoadingProducts] = useState(false);
-  const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+  const [cartProducts, setCartProducts] = useState<CartProduct[]>(
+    getCartProductsOnLocalStorage() ?? []
+  );
   const cartTotal = useMemo(
     () =>
       cartProducts?.length > 0
@@ -132,6 +141,14 @@ export const StoreProvider: React.FC = ({ children }) => {
     },
     [handleCartProductQuantity, products]
   );
+
+  const saveCartProductsOnLocalStorage = useCallback(() => {
+    window.localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+  }, [cartProducts]);
+
+  useEffect(() => {
+    saveCartProductsOnLocalStorage();
+  }, [saveCartProductsOnLocalStorage]);
 
   return (
     <StoreContext.Provider

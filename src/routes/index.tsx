@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Layout from '@containers/Layout';
 import Cart from '@pages/Cart';
@@ -11,7 +11,6 @@ const Routes = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/search" component={Home} />
         <Route exact path="/carrinho" component={Cart} />
-        <Redirect to="/" />
       </Layout>
     </Switch>
   );

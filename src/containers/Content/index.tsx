@@ -11,7 +11,7 @@ const Content: React.FC<Props> = ({ title, headerComplements, children }) => {
   return (
     <Container>
       <Header>
-        <h1>{title}</h1>
+        {title && <h1>{title}</h1>}
         {headerComplements}
       </Header>
       <Main>{children}</Main>
