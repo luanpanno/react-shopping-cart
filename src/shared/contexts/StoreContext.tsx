@@ -48,33 +48,23 @@ export const StoreProvider: React.FC = ({ children }) => {
   const [likedProducts, setLikedProducts] = useState<string[]>(
     getItemFromLocalStorage('likedProducts') ?? []
   );
-  const cartTotalPrice = useMemo(
-    () =>
-      cartProducts?.length > 0
-        ? cartProducts
-            ?.map((item) => item.total)
-            ?.reduce((cur, acc) => {
-              let amount = acc;
-              amount += cur;
 
-              return amount;
-            })
-        : 0,
-    [cartProducts]
+  const reduceCartValues = useCallback((values: number[]) => {
+    return values?.reduce((cur, acc) => {
+      let amount = acc;
+      amount += cur;
+
+      return amount;
+    }, 0);
+  }, []);
+
+  const cartTotalPrice = useMemo(
+    () => reduceCartValues(cartProducts?.map((item) => item.total)),
+    [cartProducts, reduceCartValues]
   );
   const cartProductsAmount = useMemo(
-    () =>
-      cartProducts?.length > 0 && products?.length > 0
-        ? cartProducts
-            ?.map((item) => item.quantity)
-            ?.reduce((cur, acc) => {
-              let amount = acc;
-              amount += cur;
-
-              return amount;
-            })
-        : 0,
-    [cartProducts, products]
+    () => reduceCartValues(cartProducts?.map((item) => item.quantity)),
+    [cartProducts, reduceCartValues]
   );
   const hasProductWithNoQuantity = useMemo(
     () => cartProducts?.some((product) => product.quantity === 0),
@@ -103,14 +93,15 @@ export const StoreProvider: React.FC = ({ children }) => {
         return current.filter((item) => item.id !== product.id);
       }
 
-      const item: CartProduct = {
-        id: product.id,
-        quantity: 1,
-        total: +product.price,
-        price: +product.price,
-      };
-
-      return [...current, item];
+      return [
+        ...current,
+        {
+          id: product.id,
+          quantity: 1,
+          total: +product.price,
+          price: +product.price,
+        },
+      ];
     });
   }, []);
 
@@ -147,14 +138,11 @@ export const StoreProvider: React.FC = ({ children }) => {
   const handleCartProductInputQuantityChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
       const { value } = e.target;
-      const product = products?.find((item) => item.id === id);
       const quantity = masks.integers(value);
-
-      if (quantity < 0 || quantity > product.stock) return;
 
       handleCartProductQuantity(id, quantity);
     },
-    [handleCartProductQuantity, products]
+    [handleCartProductQuantity]
   );
 
   const saveItemsOnLocalStorage = useCallback(
