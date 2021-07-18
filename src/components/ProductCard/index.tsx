@@ -1,21 +1,36 @@
 import { useMemo } from 'react';
-import { RiHeartLine } from 'react-icons/ri';
+import { RiHeartLine, RiHeartFill } from 'react-icons/ri';
 
 import { useStore } from '@contexts/StoreContext';
 import { Product } from '@models/domain/Product';
 import { masks } from '@utils/masks';
 
-import { Container, ImgContainer, Text, AddCartButton } from './styles';
+import {
+  Container,
+  ImgContainer,
+  Text,
+  LikeButton,
+  AddCartButton,
+} from './styles';
 
 interface Props {
   product: Product;
 }
 
 const ProductCard: React.FC<Props> = ({ product }) => {
-  const { handleCartProducts, cartProducts } = useStore();
+  const {
+    handleCartProducts,
+    cartProducts,
+    handleLikedProducts,
+    likedProducts,
+  } = useStore();
   const alreadyInCart = useMemo(
     () => cartProducts?.some((item) => item.id === product.id),
     [cartProducts, product]
+  );
+  const alreadyLiked = useMemo(
+    () => likedProducts?.some((id) => id === product.id),
+    [likedProducts, product]
   );
 
   return (
@@ -27,9 +42,12 @@ const ProductCard: React.FC<Props> = ({ product }) => {
         <div className="product-info">
           <div>
             <span className="name">{product?.name}</span>
-            <button type="button">
-              <RiHeartLine />
-            </button>
+            <LikeButton
+              type="button"
+              onClick={() => handleLikedProducts(product?.id)}
+            >
+              {alreadyLiked ? <RiHeartFill /> : <RiHeartLine />}
+            </LikeButton>
           </div>
           <span className="stock">{product?.stock} restantes</span>
         </div>

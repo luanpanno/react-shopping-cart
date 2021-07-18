@@ -20,8 +20,10 @@ export interface Context {
   cartTotal: number;
   productsAmount: number;
   hasProductWithNoQuantity: boolean;
+  likedProducts: string[];
   listProducts: () => Promise<void>;
   handleCartProducts: (product: Product) => void;
+  handleLikedProducts: (id: string) => void;
   handleCartProductQuantity: (id: string, quantity: number) => void;
   handleCartProductInputQuantityChange: (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -31,17 +33,20 @@ export interface Context {
 
 export const StoreContext = createContext<Context>({} as Context);
 
-function getCartProductsOnLocalStorage() {
-  const cartProducts = window.localStorage.getItem('cartProducts');
+function getItemFromLocalStorage(name: string) {
+  const items = window.localStorage.getItem(name);
 
-  return JSON.parse(cartProducts);
+  return JSON.parse(items);
 }
 
 export const StoreProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [cartProducts, setCartProducts] = useState<CartProduct[]>(
-    getCartProductsOnLocalStorage() ?? []
+    getItemFromLocalStorage('cartProducts') ?? []
+  );
+  const [likedProducts, setLikedProducts] = useState<string[]>(
+    getItemFromLocalStorage('likedProducts') ?? []
   );
   const cartTotal = useMemo(
     () =>
@@ -109,6 +114,16 @@ export const StoreProvider: React.FC = ({ children }) => {
     });
   }, []);
 
+  const handleLikedProducts = useCallback((id: string) => {
+    setLikedProducts((current) => {
+      if (current.some((item) => item === id)) {
+        return current.filter((item) => item !== id);
+      }
+
+      return [...current, id];
+    });
+  }, []);
+
   const handleCartProductQuantity = useCallback(
     (id: string, quantity: number) => {
       const product = products?.find((item) => item.id === id);
@@ -142,13 +157,20 @@ export const StoreProvider: React.FC = ({ children }) => {
     [handleCartProductQuantity, products]
   );
 
-  const saveCartProductsOnLocalStorage = useCallback(() => {
-    window.localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
-  }, [cartProducts]);
+  const saveItemsOnLocalStorage = useCallback(
+    (name: string, items: unknown) => {
+      window.localStorage.setItem(name, JSON.stringify(items));
+    },
+    []
+  );
 
   useEffect(() => {
-    saveCartProductsOnLocalStorage();
-  }, [saveCartProductsOnLocalStorage]);
+    saveItemsOnLocalStorage('cartProducts', cartProducts);
+  }, [saveItemsOnLocalStorage, cartProducts]);
+
+  useEffect(() => {
+    saveItemsOnLocalStorage('likedProducts', likedProducts);
+  }, [saveItemsOnLocalStorage, likedProducts]);
 
   return (
     <StoreContext.Provider
@@ -163,6 +185,8 @@ export const StoreProvider: React.FC = ({ children }) => {
         cartTotal,
         productsAmount,
         hasProductWithNoQuantity,
+        handleLikedProducts,
+        likedProducts,
       }}
     >
       {children}

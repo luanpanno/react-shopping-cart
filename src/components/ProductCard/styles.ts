@@ -24,6 +24,7 @@ export const ImgContainer = styled.div`
   overflow: hidden;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  height: 200px;
 
   img {
     height: 100%;
@@ -51,11 +52,6 @@ export const Text = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      svg {
-        font-size: 1.4rem;
-        color: ${(props) => props.theme.colors.secondary};
-      }
     }
 
     .stock {
@@ -70,6 +66,19 @@ export const Text = styled.div`
     font-weight: bold;
     margin: 8px 0;
     font-size: 1.2rem;
+  }
+`;
+
+export const LikeButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: ${(props) => props.theme.colors.secondary};
+  transition: all 200ms;
+
+  &:hover {
+    transform: scale(1.3);
   }
 `;
 
