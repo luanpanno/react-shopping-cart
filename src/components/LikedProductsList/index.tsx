@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { RiCloseCircleFill } from 'react-icons/ri';
 
+import DefaultImage from '@assets/imgs/default-placeholder.png';
 import NoContentText from '@components/NoContentText';
 import Tooltip from '@components/Tooltip';
 
@@ -11,6 +13,7 @@ import { Container, Item } from './styles';
 
 const LikedProductsList = () => {
   const { likedProducts, products, handleLikedProducts } = useStore();
+  const [imgLoaded, setImageLoaded] = useState(false);
 
   return (
     <Container>
@@ -32,7 +35,11 @@ const LikedProductsList = () => {
             return (
               <Item key={likedProduct?.id}>
                 <div className="img-container">
-                  <img src={likedProduct?.image} alt={likedProduct?.name} />
+                  <img
+                    src={imgLoaded ? likedProduct?.image : DefaultImage}
+                    alt={likedProduct?.name}
+                    onLoad={() => setImageLoaded(true)}
+                  />
                 </div>
                 <div className="text">
                   <span className="name">{likedProduct?.name}</span>
