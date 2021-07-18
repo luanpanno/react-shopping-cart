@@ -1,17 +1,35 @@
+import { RiCloseCircleFill } from 'react-icons/ri';
+
 import { useStore } from '@contexts/StoreContext';
+import { masks } from '@utils/masks';
 
 import { Container, Item } from './styles';
 
 const LikedProductsList = () => {
-  const { likedProducts, products } = useStore();
+  const { likedProducts, products, handleLikedProducts } = useStore();
 
   return (
     <Container>
       <ul>
         {likedProducts?.map((item) => {
-          const likedProduct = products?.find((product) => product.id === item);
+          const { id, image, name, price } = products?.find(
+            (product) => product.id === item
+          );
 
-          return <Item>{likedProduct?.name}</Item>;
+          return (
+            <Item key={id}>
+              <div className="img-container">
+                <img src={image} alt={image} />
+              </div>
+              <div className="text">
+                <span className="name">{name}</span>
+                <span className="price">R$ {masks.decimal(price)}</span>
+              </div>
+              <button type="button" onClick={() => handleLikedProducts(id)}>
+                <RiCloseCircleFill />
+              </button>
+            </Item>
+          );
         })}
       </ul>
     </Container>
