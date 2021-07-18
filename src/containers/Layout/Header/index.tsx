@@ -1,4 +1,4 @@
-import { RiShoppingCart2Line } from 'react-icons/ri';
+import { RiHeartLine, RiShoppingCart2Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 import LivenLogo from '@assets/imgs/logo-liven.webp';
@@ -6,10 +6,20 @@ import Searchbar from '@components/Searchbar';
 
 import { useStore } from '@contexts/StoreContext';
 
-import { Container, Content, CartLink } from './styles';
+import {
+  Container,
+  Content,
+  CartLink,
+  LikedProductsButton,
+  AmountSpan,
+} from './styles';
 
 const Header = () => {
-  const { cartProductsAmount } = useStore();
+  const { cartProductsAmount, likedProducts } = useStore();
+
+  function handleAmountNumber(amount: number) {
+    return amount >= 100 ? '+99' : amount;
+  }
 
   return (
     <Container>
@@ -20,8 +30,17 @@ const Header = () => {
 
         <Searchbar />
 
+        <LikedProductsButton>
+          {likedProducts?.length > 0 && (
+            <AmountSpan>{handleAmountNumber(likedProducts?.length)}</AmountSpan>
+          )}
+          <RiHeartLine />
+        </LikedProductsButton>
+
         <CartLink to="/carrinho">
-          {cartProductsAmount > 0 && <span>{cartProductsAmount}</span>}
+          {cartProductsAmount > 0 && (
+            <AmountSpan>{handleAmountNumber(cartProductsAmount)}</AmountSpan>
+          )}
           <RiShoppingCart2Line />
         </CartLink>
       </Content>

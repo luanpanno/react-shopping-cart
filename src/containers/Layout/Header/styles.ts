@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.header`
   display: flex;
@@ -10,6 +10,7 @@ export const Container = styled.header`
   background-color: ${(props) => props.theme.colors.primary};
   position: sticky;
   top: 0;
+  z-index: 10;
 `;
 
 export const Content = styled.header`
@@ -24,10 +25,10 @@ export const Content = styled.header`
   }
 `;
 
-export const CartLink = styled(Link)`
+export const ButtonStyles = css`
   font-size: 1.4rem;
   background-color: rgba(255, 255, 255, 0.9);
-  color: black;
+  color: ${(props) => props.theme.colors.primary};
   border-radius: 100%;
   height: 40px;
   width: 40px;
@@ -40,15 +41,28 @@ export const CartLink = styled(Link)`
   &:hover {
     background-color: rgba(255, 255, 255, 0.7);
   }
+`;
 
-  span {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background-color: ${(props) => props.theme.colors.secondary};
-    border-radius: 50%;
-    font-size: 0.9rem;
-    color: white;
-    padding: 4px 6px;
-  }
+export const CartLink = styled(Link)`
+  ${ButtonStyles};
+`;
+
+export const LikedProductsButton = styled.button`
+  ${ButtonStyles};
+`;
+
+export const AmountSpan = styled.span`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -8px;
+  right: -8px;
+  background-color: ${(props) => props.theme.colors.secondary};
+  border-radius: 50%;
+  font-size: 0.7rem;
+  color: white;
+  height: 24px;
+  width: 24px;
+  font-weight: bold;
 `;
