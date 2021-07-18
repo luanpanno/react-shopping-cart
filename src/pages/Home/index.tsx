@@ -26,7 +26,7 @@ const Home = () => {
   }, [products, query]);
 
   useEffect(() => {
-    if (!query) listProducts();
+    listProducts();
   }, [listProducts, query]);
 
   if (loadingProducts && products?.length <= 0) {
