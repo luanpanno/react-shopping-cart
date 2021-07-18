@@ -9,7 +9,7 @@ import { useStore } from '@contexts/StoreContext';
 import { Container, Content, CartLink } from './styles';
 
 const Header = () => {
-  const { cartAmount } = useStore();
+  const { cartProductsAmount } = useStore();
 
   return (
     <Container>
@@ -21,7 +21,7 @@ const Header = () => {
         <Searchbar />
 
         <CartLink to="/carrinho">
-          {cartAmount > 0 && <span>{cartAmount}</span>}
+          {cartProductsAmount > 0 && <span>{cartProductsAmount}</span>}
           <RiShoppingCart2Line />
         </CartLink>
       </Content>

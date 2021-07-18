@@ -18,8 +18,8 @@ const Cart = () => {
     loadingProducts,
     listProducts,
     cartProducts,
-    cartAmount,
-    cartTotal,
+    cartProductsAmount,
+    cartTotalPrice,
     hasProductWithNoQuantity,
     products,
   } = useStore();
@@ -40,7 +40,9 @@ const Cart = () => {
   return (
     <Content
       title="Carrinho"
-      headerComplements={<span>{cartAmount} produto(s) adicionados</span>}
+      headerComplements={
+        <span>{cartProductsAmount} produto(s) adicionados</span>
+      }
     >
       {!loadingProducts && cartProducts?.length <= 0 && (
         <NoContentText>Carrinho vazio.</NoContentText>
@@ -55,7 +57,7 @@ const Cart = () => {
           </CartContainer>
 
           <Total>
-            Total de <span>R$ {masks.decimal(cartTotal.toFixed(2))}</span>
+            Total de <span>R$ {masks.decimal(cartTotalPrice.toFixed(2))}</span>
           </Total>
 
           <CheckoutContainer>
