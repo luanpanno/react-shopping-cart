@@ -44,11 +44,12 @@ const Cart = () => {
         <span>{cartProductsAmount} produto(s) adicionados</span>
       }
     >
-      {!loadingProducts && cartProducts?.length <= 0 && (
-        <NoContentText>Carrinho vazio.</NoContentText>
-      )}
+      {!loadingProducts &&
+        (cartProducts?.length <= 0 || products?.length <= 0) && (
+          <NoContentText>Carrinho vazio.</NoContentText>
+        )}
 
-      {cartProducts?.length > 0 && (
+      {cartProducts?.length > 0 && products?.length > 0 && (
         <>
           <CartContainer>
             {cartProducts?.map((product) => {

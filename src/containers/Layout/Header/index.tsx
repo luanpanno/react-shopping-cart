@@ -19,7 +19,7 @@ import {
 } from './styles';
 
 const Header = () => {
-  const { cartProductsAmount, likedProducts } = useStore();
+  const { cartProductsAmount, likedProducts, products } = useStore();
   const [openList, setOpenList] = useState(false);
 
   function handleAmountNumber(amount: number) {
@@ -42,7 +42,7 @@ const Header = () => {
               data-for="liked-button"
               data-tip="Lista de Favoritos"
             >
-              {likedProducts?.length > 0 && (
+              {likedProducts?.length > 0 && products?.length > 0 && (
                 <AmountSpan>
                   {handleAmountNumber(likedProducts?.length)}
                 </AmountSpan>
@@ -55,7 +55,7 @@ const Header = () => {
         </OutsideClickHandler>
 
         <CartLink to="/carrinho" data-for="cart-button" data-tip="Carrinho">
-          {cartProductsAmount > 0 && (
+          {cartProductsAmount > 0 && products?.length > 0 && (
             <AmountSpan>{handleAmountNumber(cartProductsAmount)}</AmountSpan>
           )}
           <RiShoppingCart2Line />

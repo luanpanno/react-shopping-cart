@@ -64,7 +64,7 @@ export const StoreProvider: React.FC = ({ children }) => {
   );
   const cartProductsAmount = useMemo(
     () =>
-      cartProducts?.length > 0
+      cartProducts?.length > 0 && products?.length > 0
         ? cartProducts
             ?.map((item) => item.quantity)
             ?.reduce((cur, acc) => {
@@ -74,7 +74,7 @@ export const StoreProvider: React.FC = ({ children }) => {
               return amount;
             })
         : 0,
-    [cartProducts]
+    [cartProducts, products]
   );
   const hasProductWithNoQuantity = useMemo(
     () => cartProducts?.some((product) => product.quantity === 0),
