@@ -1,16 +1,14 @@
 import { useEffect, useMemo } from 'react';
-import { RiLayoutGridLine, RiLayoutRowLine } from 'react-icons/ri';
 import { useLocation } from 'react-router-dom';
 
 import Loading from '@components/Loading';
 import NoContentText from '@components/NoContentText';
 import ProductCard from '@components/ProductCard';
-import Tooltip from '@components/Tooltip';
 import Content from '@containers/Content';
 
 import { useStore } from '@contexts/StoreContext';
 
-import { HeaderContent, Products } from './styles';
+import { Products } from './styles';
 
 const Home = () => {
   const { search } = useLocation();
@@ -37,28 +35,7 @@ const Home = () => {
   return (
     <Content
       title="Produtos"
-      headerComplements={
-        <HeaderContent>
-          <span>{filteredProducts?.length} resultado(s)</span>
-          <button
-            type="button"
-            data-for="row-layout"
-            data-tip="Exibir em linhas"
-          >
-            <RiLayoutRowLine />
-          </button>
-          <Tooltip id="row-layout" />
-          <button
-            type="button"
-            className="active"
-            data-for="grid-layout"
-            data-tip="Exibir em colunas"
-          >
-            <RiLayoutGridLine />
-          </button>
-          <Tooltip id="grid-layout" />
-        </HeaderContent>
-      }
+      headerComplements={<span>{filteredProducts?.length} resultado(s)</span>}
     >
       {!loadingProducts && filteredProducts?.length <= 0 && (
         <NoContentText>Nenhum produto encontrado.</NoContentText>
