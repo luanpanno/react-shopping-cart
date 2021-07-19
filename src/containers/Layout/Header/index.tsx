@@ -40,10 +40,11 @@ const Header = () => {
             <LikedProductsButton
               onClick={() => setOpenList((state) => !state)}
               data-for="liked-button"
+              data-cy="liked-button"
               data-tip="Lista de Favoritos"
             >
               {likedProducts?.length > 0 && products?.length > 0 && (
-                <AmountSpan>
+                <AmountSpan data-cy="liked-products-label">
                   {handleAmountNumber(likedProducts?.length)}
                 </AmountSpan>
               )}
@@ -54,9 +55,16 @@ const Header = () => {
           </div>
         </OutsideClickHandler>
 
-        <CartLink to="/carrinho" data-for="cart-button" data-tip="Carrinho">
+        <CartLink
+          to="/carrinho"
+          data-cy="cart-button"
+          data-for="cart-button"
+          data-tip="Carrinho"
+        >
           {cartProductsAmount > 0 && products?.length > 0 && (
-            <AmountSpan>{handleAmountNumber(cartProductsAmount)}</AmountSpan>
+            <AmountSpan data-cy="cart-products-label">
+              {handleAmountNumber(cartProductsAmount)}
+            </AmountSpan>
           )}
           <RiShoppingCart2Line />
         </CartLink>

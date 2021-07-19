@@ -33,7 +33,7 @@ const LikedProductsList = () => {
             );
 
             return (
-              <Item key={likedProduct?.id}>
+              <Item key={likedProduct?.id} data-cy="liked-product">
                 <div className="img-container">
                   <img
                     src={imgLoaded ? likedProduct?.image : DefaultImage}
@@ -52,6 +52,7 @@ const LikedProductsList = () => {
                   onClick={() => handleLikedProducts(likedProduct?.id)}
                   data-for={tooltipId}
                   data-tip="Remover"
+                  data-cy="remove-liked-product"
                 >
                   <RiCloseCircleFill />
                 </button>

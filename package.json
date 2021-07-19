@@ -2,9 +2,17 @@
   "name": "teste-liven",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": "You must use Yarn on this project",
+    "yarn": "^1.22.x"
+  },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build"
+    "build": "react-app-rewired build",
+    "cy:run": "yarn run cypress run",
+    "cy:open": "yarn run cypress open",
+    "test": "start-server-and-test start http://localhost:3000 cy:run"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +51,8 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
+    "@cypress/react": "^5.9.1",
+    "@cypress/webpack-dev-server": "^1.4.0",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
@@ -53,10 +63,12 @@
     "@types/styled-components": "^5.1.11",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
+    "cypress": "^7.7.0",
     "eslint": "^7.30.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "^2.11.3",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-import-helpers": "^1.1.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
@@ -66,6 +78,7 @@
     "git-commit-msg-linter": "^3.2.6",
     "prettier": "^2.3.2",
     "react-app-rewire-alias": "^1.0.3",
-    "react-app-rewired": "^2.1.8"
+    "react-app-rewired": "^2.1.8",
+    "start-server-and-test": "^1.12.6"
   }
 }

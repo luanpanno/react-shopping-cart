@@ -43,7 +43,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
   );
 
   return (
-    <Container>
+    <Container data-cy="product-card">
       <ImgContainer>
         <img
           src={imgLoaded ? product.image : DefaultImage}
@@ -61,6 +61,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
               selected={alreadyLiked}
               data-for={tooltipId}
               data-tip="Favoritar"
+              data-cy="like-button"
             >
               {alreadyLiked ? <RiHeartFill /> : <RiHeartLine />}
             </LikeButton>
@@ -74,6 +75,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
         type="button"
         onClick={() => handleCartProducts(product)}
         selected={alreadyInCart}
+        data-cy="add-cart-button"
       >
         <span>
           {alreadyInCart ? 'Adicionado ao carrinho!' : 'Adicionar ao carrinho'}

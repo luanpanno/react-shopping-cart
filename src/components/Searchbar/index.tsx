@@ -35,6 +35,7 @@ const Searchbar = () => {
           value={query}
           onChange={handleQueryChange}
           onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+          data-cy="search-input"
         />
 
         {query && (
@@ -44,6 +45,7 @@ const Searchbar = () => {
               onClick={clearQuery}
               data-for="searchbar-reset"
               data-tip="Limpar pesquisa"
+              data-cy="clear-search"
             >
               <RiCloseCircleFill />
             </button>
@@ -57,6 +59,7 @@ const Searchbar = () => {
         onClick={handleSearch}
         data-for="searchbar-search"
         data-tip="Pesquisar"
+        data-cy="search-button"
       >
         <RiSearch2Line />
       </SearchButton>
