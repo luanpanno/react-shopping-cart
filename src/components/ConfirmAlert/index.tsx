@@ -25,11 +25,11 @@ const ConfirmAlert: React.FC<Props> = ({ text, close, action }) => {
       <Main>
         <p>{text}</p>
         <div className="buttons">
-          <ButtonOutline type="button" onClick={close}>
+          <ButtonOutline type="button" onClick={close} data-cy="close-confirm">
             Cancelar
           </ButtonOutline>
 
-          <Button type="button" onClick={handleConfirm}>
+          <Button type="button" onClick={handleConfirm} data-cy="confirm-alert">
             Confirmar
           </Button>
         </div>

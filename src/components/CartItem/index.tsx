@@ -61,7 +61,7 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
   }
 
   return (
-    <Container>
+    <Container data-cy="cart-product">
       <div className="img-container">
         <img
           src={imgLoaded ? product?.image : DefaultImage}
@@ -80,6 +80,7 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
               cartProducts?.find((item) => item.quantity === 0)?.id ===
               cartItem?.id
             }
+            data-cy="quantity-field"
           >
             <button
               type="button"
@@ -87,6 +88,7 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
               disabled={cartItem.quantity <= 0}
               data-for={tooltipId.decrease}
               data-tip="Diminuir quantidade"
+              data-cy="decrease-button"
             >
               -
             </button>
@@ -97,6 +99,7 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
               onChange={(e) =>
                 handleCartProductInputQuantityChange(e, product?.id)
               }
+              data-cy="quantity-input"
             />
             <button
               type="button"
@@ -104,12 +107,17 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
               disabled={cartItem.quantity >= product?.stock}
               data-for={tooltipId.increase}
               data-tip="Aumentar quantidade"
+              data-cy="increase-button"
             >
               +
             </button>
             <Tooltip id={tooltipId.increase} />
           </QuantityField>
-          <button type="button" onClick={handleDeleteProduct}>
+          <button
+            type="button"
+            onClick={handleDeleteProduct}
+            data-cy="delete-product-button"
+          >
             Excluir
           </button>
         </Quantity>

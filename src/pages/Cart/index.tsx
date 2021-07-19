@@ -57,7 +57,7 @@ const Cart = () => {
             })}
           </CartContainer>
 
-          <Total>
+          <Total data-cy="total-price">
             Total de <span>R$ {masks.decimal(cartTotalPrice.toFixed(2))}</span>
           </Total>
 
@@ -66,6 +66,7 @@ const Cart = () => {
               type="button"
               onClick={handleCheckoutClick}
               disabled={hasProductWithNoQuantity}
+              data-cy="checkout-button"
             >
               Finalizar compra
             </button>
