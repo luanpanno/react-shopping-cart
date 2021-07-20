@@ -1,46 +1,102 @@
-# Getting Started with Create React App
+# 🚀 LivenShop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Processo Seletivo para a Liven Tech
 
-## Available Scripts
+Por Luan Panno
 
-In the project directory, you can run:
+## 🔧 Como rodar o projeto
 
-### `yarn start`
+1.  Instale as dependências do projeto rodando o seguinte comando:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+        yarn
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2.  Adicione um arquivo `.env` na raiz do projeto, seguindo o modelo do arquivo `.env.example` (que se encontra na raiz do projeto)
 
-### `yarn test`
+        BROWSER=none
+        REACT_APP_API_URL=https://5d6da1df777f670014036125.mockapi.io
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3.  Execute o projeto com o seguinte comando:
 
-### `yarn build`
+        yarn start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Não esqueça de se certificar que as extensões do Editor Config, ESLint e Prettier estão instaladas no seu Editor de Texto e ativadas no projeto.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<hr />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔎 Testes
 
-### `yarn eject`
+Neste projetos, os testes são feitos utilizando o Cypress. O Cypress é uma ferramenta de testes end to end (e2e), e neste caso, está sendo utilizado para testar a integração no Front-End.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Comandos para testes:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Para rodar os testes pela visão do browser, insira o seguinte comando:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+       yarn run cy:open
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Para rodar os testes pelo terminal, insira o seguinte comando:
 
-## Learn More
+       yarn run cy:run
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Para iniciar o servidor e logo em seguida rodar os testes, insira o seguinte comando:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+       yarn test
+
+OBS: Para os comandos iniciados com _cy_ (ex: `yarn run cy:open`), o projeto deve estar rodando na sua máquina (com o comando `yarn start`). O comando `yarn test` inicia o projeto automaticamente e testa em seguida.
+
+<hr />
+
+## 📋 Especificações
+
+- React 17.0.2
+- TypeScript 4.1.2
+- Node 14.17.2
+- Yarn 1.22.5
+- Cypress 7.7.0
+
+<hr />
+
+## ⚙️ Configurações
+
+- [ESLint](https://eslint.org/)
+- [ESLint Config Airbnb](https://github.com/airbnb/javascript)
+- [Prettier](https://prettier.io/)
+- [EditorConfig](https://editorconfig.org/)
+- [Git Commit Msg Linter](https://github.com/legend80s/commit-msg-linter#readme)
+
+<hr />
+
+## 📝︎ Extensões recomendadas para o VSCode
+
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+- [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+
+- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
+
+- [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
+
+<hr />
+
+## 🪧 Texto Inicial
+
+Enunciado
+Desenvolver uma loja simples em React, com um catálogo de produtos e um carrinho de compras. O usuário deve poder adicionar/remover produtos do catálogo no carrinho de compras.
+
+Especificações
+Tela de produtos 🎁
+Será responsável por apresentar todos os produtos disponíveis para o usuário em uma lista. Será necessário que você estabeleça comunicação com o back-end, para obter informações relativas a cada um dos produtos.
+
+Requisição HTTP para pegar a lista de produtos: GET https://5d6da1df777f670014036125.mockapi.io/api/v1/product
+
+Tela do carrinho de compras 🛒
+Responsável por guardar os itens e quantidades adicionadas pelo usuário. É desejável que o usuário possa aumentar ou diminuir a quantidade de um produto do carrinho, além de remover por completo.
+
+Extra: Testes automatizados ✅
+Criação de suite de testes automatizados para o repositório.
+Sobre a entrega
+Estimativa de tempo para entrega: O primeiro ponto de entrega deste projeto é o próprio tempo de estimativa para a entrega final do projeto.
+Apresentação de 30 minutos (3ª etapa do processo): Durante a apresentação, é importante demonstrar o funcionamento da aplicação, assim como trazer as motivações para cada escolha do projeto. Demonstrações de trechos importantes do código também são valiosas!
+Cópia do repositório: O repositório será entregue para avaliação da estrutura do projeto. Por isso, quaisquer pontos de documentação/comentários em código são bem vindos.
+Boa sorte!
