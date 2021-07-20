@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Loading from '@components/Loading';
@@ -12,7 +12,7 @@ import { Products } from './styles';
 
 const Home = () => {
   const { search } = useLocation();
-  const { products, loadingProducts, listProducts } = useStore();
+  const { products, loadingProducts } = useStore();
   const query = useMemo(() => new URLSearchParams(search).get('q'), [search]);
   const filteredProducts = useMemo(() => {
     if (query) {
@@ -23,10 +23,6 @@ const Home = () => {
 
     return products;
   }, [products, query]);
-
-  useEffect(() => {
-    listProducts();
-  }, [listProducts, query]);
 
   if (loadingProducts && products?.length <= 0) {
     return <Loading />;

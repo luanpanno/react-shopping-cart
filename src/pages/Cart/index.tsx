@@ -1,5 +1,3 @@
-import { useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import CartItem from '@components/CartItem';
@@ -13,21 +11,14 @@ import { masks } from '@utils/masks';
 import { CartContainer, Total, CheckoutContainer } from './styles';
 
 const Cart = () => {
-  const { search } = useLocation();
   const {
     loadingProducts,
-    listProducts,
     cartProducts,
     cartProductsAmount,
     cartTotalPrice,
     hasProductWithNoQuantity,
     products,
   } = useStore();
-  const query = useMemo(() => new URLSearchParams(search).get('q'), [search]);
-
-  useEffect(() => {
-    listProducts();
-  }, [listProducts, query]);
 
   function handleCheckoutClick() {
     toast.info('Ainda não implementado! Quem sabe depois?');

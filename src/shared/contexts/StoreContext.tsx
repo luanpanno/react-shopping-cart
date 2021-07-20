@@ -151,6 +151,9 @@ export const StoreProvider: React.FC = ({ children }) => {
     },
     []
   );
+  useEffect(() => {
+    listProducts();
+  }, [listProducts]);
 
   useEffect(() => {
     saveItemsOnLocalStorage('cartProducts', cartProducts);
