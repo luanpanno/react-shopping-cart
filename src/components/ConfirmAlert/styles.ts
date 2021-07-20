@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+// react-confirm-alert throw an error if using styled themes, so i put the colors directly
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -53,7 +55,7 @@ export const Main = styled.main`
 `;
 
 export const Button = styled.button`
-  background-color: #08012a;
+  background-color: #78d98a;
   color: white;
 
   &:hover {

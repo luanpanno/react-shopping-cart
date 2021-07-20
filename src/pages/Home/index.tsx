@@ -7,13 +7,14 @@ import ProductCard from '@components/ProductCard';
 import Content from '@containers/Content';
 
 import { useStore } from '@contexts/StoreContext';
+import { urlSearchParams } from '@utils/urlSearchParams';
 
 import { Products } from './styles';
 
 const Home = () => {
   const { search } = useLocation();
   const { products, loadingProducts } = useStore();
-  const query = useMemo(() => new URLSearchParams(search).get('q'), [search]);
+  const query = useMemo(() => urlSearchParams(search, 'q'), [search]);
   const filteredProducts = useMemo(() => {
     if (query) {
       return products?.filter((product) =>

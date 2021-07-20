@@ -4,14 +4,14 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import Tooltip from '@components/Tooltip';
 
+import { urlSearchParams } from '@utils/urlSearchParams';
+
 import { Container, InputWrapper, SearchButton } from './styles';
 
 const Searchbar = () => {
   const history = useHistory();
   const { search } = useLocation();
-  const [query, setQuery] = useState(
-    new URLSearchParams(search).get('q') ?? ''
-  );
+  const [query, setQuery] = useState(urlSearchParams(search, 'q') ?? '');
 
   function handleQueryChange(e: React.ChangeEvent<HTMLInputElement>) {
     setQuery(e.target.value);
