@@ -5,12 +5,12 @@ export const Container = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  gap: 40px;
+  gap: var(--gap-large);
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.theme.colors.primary};
-  padding: 40px 0;
+  background-color: var(--colors-primary);
+  padding: var(--gap-large) 0;
 `;
 
 export const Content = styled.div`
@@ -18,12 +18,12 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
+  background-color: var(--colors-white);
   min-height: 300px;
   min-width: 50vw;
   max-width: 300px;
-  padding: 40px;
-  border-radius: 5px;
+  padding: var(--gap-large);
+  border-radius: var(--radius-regular);
   position: relative;
 
   img {
@@ -33,15 +33,15 @@ export const Content = styled.div`
   }
 
   h1 {
-    font-size: 1.4rem;
-    color: ${(props) => props.theme.colors.red};
+    font-size: var(--font-big);
+    color: var(--colors-red);
     font-weight: bold;
   }
 
   .buttons {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: var(--gap-medium);
     width: 100%;
   }
 `;
@@ -51,24 +51,24 @@ export const ErrorContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.1);
-  padding: 24px 16px;
-  border-radius: 5px;
+  padding: var(--gap-verySmall) var(--gap-medium);
+  border-radius: var(--radius-regular);
   width: 100%;
 
   p {
     color: #555;
-    font-size: 1rem;
-    line-height: 1.4rem;
+    font-size: var(--font-regular);
+    line-height: var(--font-big);
   }
 `;
 
 export const Button = styled.button`
   width: 100%;
-  height: 48px;
+  height: var(--gap-extra);
   color: #fff;
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: var(--colors-secondary);
   border: none;
-  border-radius: 2px;
+  border-radius: var(--radius-small);
   transition: all 300ms;
   text-transform: uppercase;
 

@@ -7,8 +7,8 @@ interface QuantityFieldProps {
 export const Container = styled.div`
   display: grid;
   grid-template-columns: 100px 1fr;
-  padding: 24px 8px;
-  gap: 16px;
+  padding: var(--gap-big) var(--gap-small);
+  gap: var(--gap-medium);
 
   .img-container {
     display: flex;
@@ -16,7 +16,7 @@ export const Container = styled.div`
     justify-content: center;
     max-width: 100px;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: var(--radius-small);
 
     img {
       width: 100%;
@@ -32,12 +32,12 @@ export const ProductInfo = styled.div`
   .text {
     display: flex;
     flex-direction: column;
-    row-gap: 4px;
+    row-gap: var(--gap-verySmall);
   }
 
   .stock {
-    color: #aaa;
-    font-size: 0.9rem;
+    color: var(--colors-grey1);
+    font-size: var(--font-small);
   }
 `;
 
@@ -45,41 +45,41 @@ export const Quantity = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 4px;
+  row-gap: var(--gap-verySmall);
   position: relative;
 
   & > button {
     position: absolute;
     bottom: -20px;
-    font-size: 0.7rem;
-    color: ${(props) => props.theme.colors.red};
+    font-size: var(--font-small);
+    color: var(--colors-red);
   }
 `;
 
 export const QuantityField = styled.div<QuantityFieldProps>`
   display: flex;
   align-items: center;
-  column-gap: 8px;
+  column-gap: var(--gap-small);
   border: 1px solid
-    ${(props) => (props.hasError ? props.theme.colors.red : `#eaeaea`)};
-  border-radius: 6px;
-  padding: 0 8px;
+    ${(props) => (props.hasError ? 'var(--colors-red)' : `var(--colors-grey4)`)};
+  border-radius: var(--radius-regular);
+  padding: 0 var(--gap-small);
 
   input {
-    padding: 8px 0;
+    padding: var(--gap-small) 0;
     text-align: center;
     width: 100%;
     height: 100%;
     border: none;
     outline: none;
-    max-width: 50px;
+    max-width: var(--gap-extra);
   }
 
   button {
     font-weight: bold;
 
     &:disabled {
-      color: #eaeaea;
+      color: var(--colors-grey4);
       cursor: default;
     }
   }
@@ -87,6 +87,6 @@ export const QuantityField = styled.div<QuantityFieldProps>`
 
 export const Price = styled.span`
   text-align: right;
-  color: ${(props) => props.theme.colors.primary};
+  color: var(--colors-primary);
   font-weight: bold;
 `;

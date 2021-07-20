@@ -11,7 +11,7 @@ export const Container = styled.div`
   width: 100%;
   height: 350px;
   box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
+  border-radius: var(--radius-regular);
   transition: all 400ms;
 
   &:hover {
@@ -22,8 +22,8 @@ export const Container = styled.div`
 export const ImgContainer = styled.div`
   width: 100%;
   overflow: hidden;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-top-left-radius: var(--radius-regular);
+  border-top-right-radius: var(--radius-regular);
   height: 200px;
 
   img {
@@ -41,8 +41,8 @@ export const Text = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: 12px;
-  padding: 12px;
+  row-gap: var(--gap-regular);
+  padding: var(--gap-regular);
 
   .product-info {
     display: flex;
@@ -55,17 +55,17 @@ export const Text = styled.div`
     }
 
     .stock {
-      color: #aaa;
-      font-size: 0.9rem;
+      color: var(--colors-grey2);
+      font-size: var(--font-small);
     }
   }
 
   .price {
     text-align: center;
-    color: ${(props) => props.theme.colors.primary};
+    color: var(--colors-primary);
     font-weight: bold;
-    margin: 8px 0;
-    font-size: 1.2rem;
+    margin: var(--gap-small) 0;
+    font-size: var(--font-big);
   }
 `;
 
@@ -73,28 +73,28 @@ export const LikeButton = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  color: ${(props) => props.theme.colors.secondary};
+  font-size: var(--font-big);
+  color: var(--colors-secondary);
   transition: all 200ms;
 
   &:hover {
     transform: scale(1.3);
-    color: ${(props) => props.selected && props.theme.colors.red};
+    color: ${(props) => props.selected && 'var(--colors-red)'};
   }
 `;
 
 export const AddCartButton = styled.button<ButtonProps>`
   background-color: ${(props) =>
-    props.selected ? props.theme.colors.yellow : props.theme.colors.secondary};
-  color: white;
-  padding: 12px 0;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+    props.selected ? 'var(--colors-yellow)' : 'var(--colors-secondary)'};
+  color: var(--colors-white);
+  padding: var(--gap-regular) 0;
+  border-bottom-left-radius: var(--radius-regular);
+  border-bottom-right-radius: var(--radius-regular);
   transition: all 200ms;
 
   &:hover {
     opacity: 0.9;
-    background-color: ${(props) => props.selected && props.theme.colors.red};
+    background-color: ${(props) => props.selected && 'var(--colors-red)'};
 
     span {
       display: ${(props) => props.selected && 'none'};

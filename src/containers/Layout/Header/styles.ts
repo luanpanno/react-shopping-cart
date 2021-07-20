@@ -7,7 +7,7 @@ export const Container = styled.header`
   justify-content: center;
   width: 100%;
   height: 75px;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: var(--colors-primary);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -31,14 +31,14 @@ export const Content = styled.header`
 
 export const Notifications = styled.div`
   display: flex;
-  column-gap: 32px;
+  column-gap: var(--gap-large);
 `;
 
 export const ButtonStyles = css`
-  color: ${(props) => props.theme.colors.primary};
+  color: var(--colors-primary);
   border-radius: 100%;
-  height: 40px;
-  width: 40px;
+  height: var(--gap-large);
+  width: var(--gap-large);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,8 +46,8 @@ export const ButtonStyles = css`
   position: relative;
 
   svg {
-    color: white;
-    font-size: 1.6rem;
+    color: var(--colors-white);
+    font-size: var(--font-extra);
   }
 
   &:hover {

@@ -3,22 +3,21 @@ import styled from 'styled-components';
 export const CartContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* row-gap: 16px; */
 
   & > div {
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--colors-grey4);
   }
 `;
 
 export const Total = styled.div`
-  padding: 48px 8px;
+  padding: var(--gap-extra) var(--gap-small);
   text-align: right;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--colors-grey4);
 
   span {
-    color: ${(props) => props.theme.colors.primary};
+    color: var(--colors-primary);
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: var(--font-big);
   }
 `;
 
@@ -26,14 +25,14 @@ export const CheckoutContainer = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  margin-top: 36px;
-  margin-right: 4px;
+  margin-top: var(--gap-large);
+  margin-right: var(--gap-verySmall);
 
   button {
-    background-color: ${(props) => props.theme.colors.secondary};
-    color: white;
-    padding: 12px 16px;
-    border-radius: 2px;
+    background-color: var(--colors-secondary);
+    color: var(--colors-white);
+    padding: var(--gap-regular) var(--gap-medium);
+    border-radius: var(--radius-small);
     transition: all 200ms;
 
     &:hover {
@@ -41,7 +40,7 @@ export const CheckoutContainer = styled.div`
     }
 
     &:disabled {
-      background-color: #aeaeae;
+      background-color: var(--colors-grey3);
       cursor: not-allowed;
     }
   }

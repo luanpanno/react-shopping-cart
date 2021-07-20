@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  background-color: #fff;
-  height: 32px;
-  border-radius: 12px;
+  background-color: var(--colors-white);
+  height: var(--gap-large);
+  border-radius: var(--radius-big);
   width: 100%;
   max-width: 600px;
 
@@ -26,8 +26,8 @@ export const InputWrapper = styled.div`
   input {
     flex: 1;
     height: 100%;
-    padding: 12px 8px;
-    border-right: 12px;
+    padding: var(--gap-regular) var(--gap-small);
+    border-right: var(--gap-regular);
     border: none;
     outline: none;
     background-color: transparent;
@@ -40,25 +40,26 @@ export const InputWrapper = styled.div`
     right: 0;
 
     svg {
-      color: #333;
+      color: var(--colors-grey1);
     }
   }
 `;
 
 export const SearchButton = styled.button`
-  width: 36px;
+  width: var(--gap-large);
   height: 100%;
   transition: background 200ms;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-  margin-left: 4px;
-  border-left: 1px solid #ccc;
+  border-top-right-radius: var(--gap-regular);
+  border-bottom-right-radius: var(--gap-regular);
+  margin-left: var(--gap-verySmall);
+  border-left: 1px solid var(--colors-grey4);
 
   svg {
-    font-size: 1.2rem;
+    font-size: var(--font-big);
+    color: var(--colors-grey3);
   }
 
   &:hover {
-    background-color: #eaeaea;
+    background-color: var(--colors-grey4);
   }
 `;

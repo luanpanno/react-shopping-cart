@@ -6,57 +6,57 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 500px;
-  background-color: white;
+  background-color: var(--colors-white);
   box-shadow: 0px 1px 5px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
+  border-radius: var(--radius-small);
 `;
 
 export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 12px 8px;
+  padding: var(--gap-regular) var(--gap-small);
 
   button {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: var(--font-regular);
   }
 `;
 
 export const Main = styled.main`
-  padding: 16px;
+  padding: var(--gap-medium);
 
   p {
-    margin: 0 12px 24px 12px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid #eee;
-    font-size: 0.9rem;
+    margin: 0 var(--gap-regular) var(--gap-big) var(--gap-regular);
+    padding-bottom: var(--gap-large);
+    border-bottom: 1px solid var(--colors-grey4);
+    font-size: var(--font-regular);
   }
 
   .buttons {
-    margin-right: 24px;
+    margin-right: var(--gap-big);
     display: flex;
     align-self: flex-end;
     justify-content: flex-end;
-    column-gap: 8px;
+    column-gap: var(--gap-small);
     width: 100%;
 
     button {
-      padding: 6px 10px;
+      padding: var(--gap-small) var(--gap-regular);
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 4px;
+      border-radius: var(--radius-regular);
       transition: all 200ms;
     }
   }
 `;
 
 export const Button = styled.button`
-  background-color: #78d98a;
-  color: white;
+  background-color: var(--colors-secondary);
+  color: var(--colors-white);
 
   &:hover {
     opacity: 0.8;
@@ -64,12 +64,12 @@ export const Button = styled.button`
 `;
 
 export const ButtonOutline = styled.button`
-  color: #e63946;
-  border: 1px solid #e63946;
-  background-color: #fff;
+  color: var(--colors-red);
+  border: 1px solid var(--colors-red);
+  background-color: var(--colors-white);
 
   &:hover {
-    background-color: #e63946;
-    color: #fff;
+    background-color: var(--colors-red);
+    color: var(--colors-white);
   }
 `;
