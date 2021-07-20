@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { RiHeartLine, RiShoppingCart2Line } from 'react-icons/ri';
+import { RiHeartFill, RiShoppingCart2Fill } from 'react-icons/ri';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,13 @@ import Tooltip from '@components/Tooltip';
 
 import { useStore } from '@contexts/StoreContext';
 
-import { Container, Content, CartLink, LikedProductsButton } from './styles';
+import {
+  Container,
+  Content,
+  Notifications,
+  CartLink,
+  LikedProductsButton,
+} from './styles';
 
 const Header = () => {
   const { cartProductsAmount, likedProducts, products } = useStore();
@@ -26,42 +32,44 @@ const Header = () => {
 
         <Searchbar />
 
-        <OutsideClickHandler onOutsideClick={() => setOpenList(false)}>
-          <div className="liked">
-            <LikedProductsButton
-              onClick={() => setOpenList((state) => !state)}
-              data-for="liked-button"
-              data-cy="liked-button"
-              data-tip="Lista de Favoritos"
-            >
-              {likedProducts?.length > 0 && products?.length > 0 && (
-                <NotificationLabel
-                  dataCy="liked-products-label"
-                  value={likedProducts?.length}
-                />
-              )}
-              <RiHeartLine />
-            </LikedProductsButton>
-            <Tooltip id="liked-button" />
-            {openList && <LikedProductsList />}
-          </div>
-        </OutsideClickHandler>
+        <Notifications>
+          <OutsideClickHandler onOutsideClick={() => setOpenList(false)}>
+            <div className="liked">
+              <LikedProductsButton
+                onClick={() => setOpenList((state) => !state)}
+                data-for="liked-button"
+                data-cy="liked-button"
+                data-tip="Lista de Favoritos"
+              >
+                {likedProducts?.length > 0 && products?.length > 0 && (
+                  <NotificationLabel
+                    dataCy="liked-products-label"
+                    value={likedProducts?.length}
+                  />
+                )}
+                <RiHeartFill />
+              </LikedProductsButton>
+              <Tooltip id="liked-button" />
+              {openList && <LikedProductsList />}
+            </div>
+          </OutsideClickHandler>
 
-        <CartLink
-          to="/carrinho"
-          data-cy="cart-button"
-          data-for="cart-button"
-          data-tip="Carrinho"
-        >
-          {cartProductsAmount > 0 && products?.length > 0 && (
-            <NotificationLabel
-              dataCy="cart-products-label"
-              value={cartProductsAmount}
-            />
-          )}
-          <RiShoppingCart2Line />
-        </CartLink>
-        <Tooltip id="cart-button" />
+          <CartLink
+            to="/carrinho"
+            data-cy="cart-button"
+            data-for="cart-button"
+            data-tip="Carrinho"
+          >
+            {cartProductsAmount > 0 && products?.length > 0 && (
+              <NotificationLabel
+                dataCy="cart-products-label"
+                value={cartProductsAmount}
+              />
+            )}
+            <RiShoppingCart2Fill />
+          </CartLink>
+          <Tooltip id="cart-button" />
+        </Notifications>
       </Content>
     </Container>
   );

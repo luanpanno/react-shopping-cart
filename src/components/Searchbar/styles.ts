@@ -7,7 +7,7 @@ export const Container = styled.div`
   height: 32px;
   border-radius: 12px;
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
 
   button {
     display: flex;

@@ -29,9 +29,12 @@ export const Content = styled.header`
   }
 `;
 
+export const Notifications = styled.div`
+  display: flex;
+  column-gap: 32px;
+`;
+
 export const ButtonStyles = css`
-  font-size: 1.4rem;
-  background-color: rgba(255, 255, 255, 0.9);
   color: ${(props) => props.theme.colors.primary};
   border-radius: 100%;
   height: 40px;
@@ -42,8 +45,13 @@ export const ButtonStyles = css`
   transition: background 200ms;
   position: relative;
 
+  svg {
+    color: white;
+    font-size: 1.6rem;
+  }
+
   &:hover {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.2);
   }
 `;
 
