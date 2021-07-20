@@ -21,8 +21,10 @@ export const Content = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  column-gap: var(--gap-big);
   width: 100%;
   max-width: 1000px;
+  padding: 0 var(--gap-extra);
 
   & > a img {
     height: 50px;

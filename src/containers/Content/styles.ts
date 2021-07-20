@@ -4,6 +4,7 @@ export const Container = styled.div`
   margin: var(--gap-big) 0;
   width: 100%;
   max-width: 1000px;
+  padding: 0 var(--gap-extra);
 `;
 
 export const Header = styled.header`
