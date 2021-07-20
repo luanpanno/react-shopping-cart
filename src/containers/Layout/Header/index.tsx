@@ -5,26 +5,17 @@ import { Link } from 'react-router-dom';
 
 import LivenLogo from '@assets/imgs/logo-liven.webp';
 import LikedProductsList from '@components/LikedProductsList';
+import NotificationLabel from '@components/NotificationLabel';
 import Searchbar from '@components/Searchbar';
 import Tooltip from '@components/Tooltip';
 
 import { useStore } from '@contexts/StoreContext';
 
-import {
-  Container,
-  Content,
-  CartLink,
-  LikedProductsButton,
-  AmountSpan,
-} from './styles';
+import { Container, Content, CartLink, LikedProductsButton } from './styles';
 
 const Header = () => {
   const { cartProductsAmount, likedProducts, products } = useStore();
   const [openList, setOpenList] = useState(false);
-
-  function handleAmountNumber(amount: number) {
-    return amount >= 100 ? '+99' : amount;
-  }
 
   return (
     <Container>
@@ -44,9 +35,10 @@ const Header = () => {
               data-tip="Lista de Favoritos"
             >
               {likedProducts?.length > 0 && products?.length > 0 && (
-                <AmountSpan data-cy="liked-products-label">
-                  {handleAmountNumber(likedProducts?.length)}
-                </AmountSpan>
+                <NotificationLabel
+                  dataCy="liked-products-label"
+                  value={likedProducts?.length}
+                />
               )}
               <RiHeartLine />
             </LikedProductsButton>
@@ -62,9 +54,10 @@ const Header = () => {
           data-tip="Carrinho"
         >
           {cartProductsAmount > 0 && products?.length > 0 && (
-            <AmountSpan data-cy="cart-products-label">
-              {handleAmountNumber(cartProductsAmount)}
-            </AmountSpan>
+            <NotificationLabel
+              dataCy="cart-products-label"
+              value={cartProductsAmount}
+            />
           )}
           <RiShoppingCart2Line />
         </CartLink>

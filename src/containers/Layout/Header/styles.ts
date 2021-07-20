@@ -54,19 +54,3 @@ export const CartLink = styled(Link)`
 export const LikedProductsButton = styled.button`
   ${ButtonStyles};
 `;
-
-export const AmountSpan = styled.span`
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: -8px;
-  right: -8px;
-  background-color: ${(props) => props.theme.colors.secondary};
-  border-radius: 50%;
-  font-size: 0.7rem;
-  color: white;
-  height: 24px;
-  width: 24px;
-  font-weight: bold;
-`;
