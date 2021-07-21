@@ -1,6 +1,14 @@
 language: node_js
 node_js:
   - 14
+cache:
+directories:
+  - ~/.npm
+  - ~/.cache
+override:
+  - yarn ci
+  - yarn run cy:run
 script:
   - eslint src --ext .ts,.tsx
   - yarn test
+  - kill $(jobs -p) || true
