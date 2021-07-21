@@ -5,6 +5,11 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1000px;
   padding: 0 var(--gap-extra);
+
+  @media screen and (max-width: 580px) {
+    margin: var(--gap-medium) 0;
+    padding: 0 var(--gap-small);
+  }
 `;
 
 export const Header = styled.header`
@@ -31,4 +36,8 @@ export const Main = styled.main`
   padding: var(--gap-extra);
   background-color: var(--colors-white);
   border-radius: var(--radius-regular);
+
+  @media screen and (max-width: 850px) {
+    padding: var(--gap-big);
+  }
 `;
