@@ -52,6 +52,7 @@ export const SearchButton = styled.button`
   border-bottom-right-radius: var(--gap-regular);
   margin-left: var(--gap-verySmall);
   border-left: 1px solid var(--colors-grey4);
+  min-width: var(--gap-extra);
 
   svg {
     font-size: var(--font-big);

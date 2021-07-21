@@ -16,8 +16,4 @@ export const Container = styled.div<Props>`
   .default {
     display: ${(props) => props.loaded && 'none'};
   }
-
-  .actual {
-    display: ${(props) => !props.loaded && 'none'};
-  }
 `;

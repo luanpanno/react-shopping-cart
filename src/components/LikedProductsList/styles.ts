@@ -32,7 +32,7 @@ export const Container = styled.div`
     right: calc(-1vw - 24px);
 
     &::before {
-      right: calc(-1vw + 54px);
+      right: 43px;
     }
   }
 
@@ -40,7 +40,7 @@ export const Container = styled.div`
     right: calc(-1vw - 24px);
 
     &::before {
-      right: calc(-1vw + 44px);
+      right: 38px;
     }
   }
 
@@ -51,7 +51,7 @@ export const Container = styled.div`
     right: 0;
 
     &::before {
-      right: calc(-1vw + 85px);
+      right: 72px;
     }
   }
 `;
