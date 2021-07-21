@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: absolute;
   top: 56px;
-  right: -325%;
+  right: -132px;
   background-color: var(--colors-white);
   padding: var(--gap-medium);
   width: 300px;
