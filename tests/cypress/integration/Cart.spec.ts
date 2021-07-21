@@ -5,7 +5,7 @@ const cartProductsMock = [
 ];
 
 describe('Cart', () => {
-  describe('Empty', () => {
+  context('Empty Cart', () => {
     it('Should show empty text message if theres no products on cart', () => {
       cy.clearLocalStorage();
 
@@ -17,13 +17,19 @@ describe('Cart', () => {
 
       cy.wait('@products');
 
-      cy.get('p').should('contain.text', 'Carrinho vazio.');
-      cy.get('span').should('contain.text', '0 produto(s) adicionados');
+      cy.getByDataCy('no-content-text').should(
+        'contain.text',
+        'Carrinho vazio.'
+      );
+      cy.getByDataCy('header-count-text').should(
+        'contain.text',
+        '0 produto(s) adicionados'
+      );
     });
   });
 
-  describe('With Items', () => {
-    beforeEach(() => {
+  context('Cart with products', () => {
+    before(() => {
       cy.clearLocalStorage();
 
       cy.intercept('**/api/v1/product', {
@@ -35,213 +41,134 @@ describe('Cart', () => {
       cy.wait('@products');
     });
 
-    it('Should have the correct products length on cart', () => {
+    beforeEach(() => {
+      cy.intercept('**/api/v1/product', {
+        fixture: 'products',
+      }).as('products');
+
       window.localStorage.setItem(
         'cartProducts',
         JSON.stringify(cartProductsMock)
       );
-      cy.reload();
-      cy.wait('@products');
 
-      cy.getByDataId('cart-product').should(
-        'have.length',
-        cartProductsMock.length
-      );
-      cy.get('span').should(
+      cy.reload();
+
+      cy.wait('@products');
+    });
+
+    it('Should have the correct products length on cart', () => {
+      const cartLength = cartProductsMock.length;
+
+      cy.getByDataCy('cart-product').should('have.length', cartLength);
+      cy.getByDataCy('header-count-text').should(
         'contain.text',
-        `${cartProductsMock.length} produto(s) adicionados`
+        `${cartLength} produto(s) adicionados`
       );
-      cy.getByDataId('cart-products-label').should(
-        'contain.text',
-        cartProductsMock.length
-      );
+      cy.getByDataCy('cart-products-label').should('contain.text', cartLength);
     });
 
     it('Should increase quantity by clicking in button', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
+      const cartLength = cartProductsMock.length + 1;
 
-      cy.get('[data-cy=increase-button]:first').click();
+      cy.getByDataCy('increase-button', ':first').click();
 
-      cy.get('span').should(
+      cy.getByDataCy('header-count-text').should(
         'contain.text',
-        `${cartProductsMock.length + 1} produto(s) adicionados`
+        `${cartLength} produto(s) adicionados`
       );
-      cy.getByDataId('cart-products-label').should(
-        'contain.text',
-        cartProductsMock.length + 1
-      );
+      cy.getByDataCy('cart-products-label').should('contain.text', cartLength);
     });
 
     it('Should decrease quantity by clicking in button', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
+      const cartLength = cartProductsMock.length - 1;
 
-      cy.get('[data-cy=decrease-button]:first').click();
+      cy.getByDataCy('decrease-button', ':first').click();
 
-      cy.get('span').should(
+      cy.getByDataCy('header-count-text').should(
         'contain.text',
-        `${cartProductsMock.length - 1} produto(s) adicionados`
+        `${cartLength} produto(s) adicionados`
       );
-      cy.getByDataId('cart-products-label').should(
-        'contain.text',
-        cartProductsMock.length - 1
-      );
+      cy.getByDataCy('cart-products-label').should('contain.text', cartLength);
     });
 
     it('Should change quantity by typing on field', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
+      const cartLength = cartProductsMock.length + 1;
 
-      cy.get('[data-cy=quantity-input]:first').type('{backspace}');
-      cy.get('[data-cy=quantity-input]:first').type('2');
+      cy.getByDataCy('quantity-input', ':first').type('{backspace}').type('2');
 
-      cy.get('span').should(
+      cy.getByDataCy('header-count-text').should(
         'contain.text',
-        `${cartProductsMock.length + 1} produto(s) adicionados`
+        `${cartLength} produto(s) adicionados`
       );
-      cy.getByDataId('cart-products-label').should(
-        'contain.text',
-        cartProductsMock.length + 1
-      );
+      cy.getByDataCy('cart-products-label').should('contain.text', cartLength);
     });
 
     it('Should disable decrease button if theres no quantity', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
-
-      cy.get('[data-cy=decrease-button]:first').click();
-
-      cy.get('[data-cy=decrease-button]:first').should('be.disabled');
+      cy.getByDataCy('decrease-button', ':first').click().should('be.disabled');
     });
 
     it('Should disable increase button if quantity is equal to product stock', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
-
-      cy.get('[data-cy=decrease-button]:first').click();
+      cy.getByDataCy('decrease-button', ':first').click();
 
       cy.fixture('products').then((products) => {
         const product = products?.find(
           (item) => item.id === cartProductsMock[0].id
         );
 
-        cy.get('[data-cy=quantity-input]:first').type(product.stock);
+        cy.getByDataCy('quantity-input', ':first').type(product.stock);
       });
 
-      cy.get('[data-cy=increase-button]:first').should('be.disabled');
+      cy.getByDataCy('increase-button', ':first').should('be.disabled');
     });
 
     it('Should show error if theres a quantity 0', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
+      cy.getByDataCy('decrease-button', ':first').click();
 
-      cy.get('[data-cy=decrease-button]:first').click();
-
-      cy.get('[data-cy=quantity-field]:first')
+      cy.getByDataCy('quantity-field', ':first')
         .should('have.css', 'border')
         .and('eq', '1px solid rgb(230, 57, 70)');
     });
 
     it('Should open confirm modal on delete click', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
-
-      cy.get('[data-cy=delete-product-button]:first').click();
+      cy.getByDataCy('delete-product-button', ':first').click();
 
       cy.get('.react-confirm-alert').should('exist');
     });
 
     it('Should close confirm modal', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
+      cy.getByDataCy('delete-product-button', ':first').click();
 
-      cy.get('[data-cy=delete-product-button]:first').click();
-
-      cy.getByDataId('close-confirm').click();
-      cy.getByDataId('cart-products-label').should(
+      cy.getByDataCy('close-confirm').click();
+      cy.getByDataCy('cart-products-label').should(
         'contain.text',
         cartProductsMock.length
       );
     });
 
     it('Should delete cart product', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
+      const cartLength = cartProductsMock.length - 1;
 
-      cy.get('[data-cy=delete-product-button]:first').click();
+      cy.getByDataCy('delete-product-button', ':first').click();
 
-      cy.getByDataId('confirm-alert').click();
-      cy.get('span').should(
+      cy.getByDataCy('confirm-alert').click();
+
+      cy.getByDataCy('header-count-text').should(
         'contain.text',
-        `${cartProductsMock.length - 1} produto(s) adicionados`
+        `${cartLength} produto(s) adicionados`
       );
-      cy.getByDataId('cart-products-label').should(
-        'contain.text',
-        cartProductsMock.length - 1
-      );
+      cy.getByDataCy('cart-products-label').should('contain.text', cartLength);
     });
 
     it('Should have the correct total price', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
+      cy.getByDataCy('increase-button', ':first').click();
 
-      cy.get('[data-cy=increase-button]:first').click();
-
-      cy.getByDataId('total-price').should('contain.text', `R$ 2.001,00`);
+      cy.getByDataCy('total-price').should('contain.text', `R$ 2.001,00`);
     });
 
     it('Should disable checkout button if theres error', () => {
-      window.localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(cartProductsMock)
-      );
-      cy.reload();
-      cy.wait('@products');
+      cy.getByDataCy('decrease-button', ':first').click();
 
-      cy.get('[data-cy=decrease-button]:first').click();
-
-      cy.getByDataId('checkout-button').should('be.disabled');
+      cy.getByDataCy('checkout-button').should('be.disabled');
     });
   });
 });

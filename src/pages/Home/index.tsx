@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <Content
       title="Produtos"
-      headerComplements={<span>{filteredProducts?.length} resultado(s)</span>}
+      countText={`${filteredProducts?.length} resultado(s)`}
     >
       {!loadingProducts && filteredProducts?.length <= 0 && (
         <NoContentText>Nenhum produto encontrado.</NoContentText>

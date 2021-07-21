@@ -1,5 +1,8 @@
 declare namespace Cypress {
   interface Chainable {
-    getByDataId(id: string): Cypress.Chainable<JQuery<HTMLElement>>;
+    getByDataCy(
+      id: string,
+      helpers?: string
+    ): Cypress.Chainable<JQuery<HTMLElement>>;
   }
 }

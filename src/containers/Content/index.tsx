@@ -1,18 +1,16 @@
-import React, { ReactNode } from 'react';
-
 import { Container, Header, Main } from './styles';
 
 interface Props {
   title?: string;
-  headerComplements?: ReactNode;
+  countText?: string;
 }
 
-const Content: React.FC<Props> = ({ title, headerComplements, children }) => {
+const Content: React.FC<Props> = ({ title, countText, children }) => {
   return (
     <Container>
       <Header>
         {title && <h1>{title}</h1>}
-        {headerComplements}
+        {countText && <span data-cy="header-count-text">{countText}</span>}
       </Header>
       <Main>{children}</Main>
     </Container>

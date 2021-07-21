@@ -31,9 +31,7 @@ const Cart = () => {
   return (
     <Content
       title="Carrinho"
-      headerComplements={
-        <span>{cartProductsAmount} produto(s) adicionados</span>
-      }
+      countText={`${cartProductsAmount} produto(s) adicionados`}
     >
       {!loadingProducts &&
         (cartProducts?.length <= 0 || products?.length <= 0) && (
