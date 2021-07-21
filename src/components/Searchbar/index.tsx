@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { HTMLAttributes, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import Icons from '@components/Icons';
@@ -8,7 +8,7 @@ import { urlSearchParams } from '@utils/urlSearchParams';
 
 import { Container, InputWrapper, SearchButton } from './styles';
 
-const Searchbar = () => {
+const Searchbar: React.FC<HTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
   const history = useHistory();
   const { search } = useLocation();
   const [query, setQuery] = useState(urlSearchParams(search, 'q') ?? '');
@@ -27,7 +27,7 @@ const Searchbar = () => {
   }
 
   return (
-    <Container>
+    <Container {...props}>
       <InputWrapper>
         <input
           type="text"

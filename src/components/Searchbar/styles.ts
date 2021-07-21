@@ -7,7 +7,7 @@ export const Container = styled.div`
   height: var(--gap-large);
   border-radius: var(--radius-big);
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
 
   button {
     display: flex;
@@ -31,7 +31,6 @@ export const InputWrapper = styled.div`
     border: none;
     outline: none;
     background-color: transparent;
-    min-width: 300px;
     width: 100%;
   }
 

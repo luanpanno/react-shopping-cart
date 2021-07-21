@@ -26,13 +26,13 @@ const Header = () => {
   return (
     <Container>
       <Content>
-        <Link to="/">
+        <Link to="/" className="logo">
           <img src={LivenLogo} alt="logo" />
         </Link>
 
-        <Searchbar />
+        <Searchbar className="searchbar" />
 
-        <Notifications>
+        <Notifications className="notifications">
           <OutsideClickHandler onOutsideClick={() => setOpenList(false)}>
             <div className="liked">
               <LikedProductsButton

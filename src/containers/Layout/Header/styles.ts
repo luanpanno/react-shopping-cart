@@ -6,7 +6,8 @@ export const Container = styled.header`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 75px;
+  /* height: 75px; */
+  padding: var(--gap-medium) 0;
   background-color: var(--colors-primary);
   position: sticky;
   top: 0;
@@ -17,7 +18,7 @@ export const Container = styled.header`
   }
 `;
 
-export const Content = styled.header`
+export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,11 +30,39 @@ export const Content = styled.header`
   & > a img {
     height: 50px;
   }
+
+  @media screen and (max-width: 750px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      'logo notifications'
+      'searchbar searchbar';
+
+    .logo {
+      grid-area: logo;
+    }
+
+    .searchbar {
+      grid-area: searchbar;
+    }
+
+    .notifications {
+      grid-area: notifications;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    padding: 0 var(--gap-medium);
+  }
 `;
 
 export const Notifications = styled.div`
   display: flex;
-  column-gap: var(--gap-large);
+  align-items: center;
+  justify-content: space-between;
+  column-gap: var(--gap-big);
+  justify-content: flex-end;
 `;
 
 export const ButtonStyles = css`
