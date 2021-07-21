@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { RiHeartLine, RiHeartFill } from 'react-icons/ri';
 
-import DefaultImage from '@assets/imgs/default-placeholder.png';
+import Image from '@components/Image';
 import Tooltip from '@components/Tooltip';
 
 import { useStore } from '@contexts/StoreContext';
@@ -28,7 +28,6 @@ const ProductCard: React.FC<Props> = ({ product }) => {
     handleLikedProducts,
     likedProducts,
   } = useStore();
-  const [imgLoaded, setImageLoaded] = useState(false);
   const alreadyInCart = useMemo(
     () => cartProducts?.some((item) => item.id === product.id),
     [cartProducts, product]
@@ -45,11 +44,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <Container data-cy="product-card">
       <ImgContainer>
-        <img
-          src={imgLoaded ? product.image : DefaultImage}
-          alt={product.name}
-          onLoad={() => setImageLoaded(true)}
-        />
+        <Image src={product.image} alt={product.name} />
       </ImgContainer>
       <Text>
         <div className="product-info">

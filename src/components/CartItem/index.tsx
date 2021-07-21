@@ -1,7 +1,7 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 
-import DefaultImage from '@assets/imgs/default-placeholder.png';
 import confirmHandler from '@components/ConfirmAlert';
+import Image from '@components/Image';
 import Tooltip from '@components/Tooltip';
 
 import { useStore } from '@contexts/StoreContext';
@@ -29,7 +29,6 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
     handleCartProductInputQuantityChange,
     cartProducts,
   } = useStore();
-  const [imgLoaded, setImageLoaded] = useState(false);
   const product = useMemo(
     () => products?.find((item) => item.id === cartItem.id),
     [cartItem, products]
@@ -63,11 +62,7 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
   return (
     <Container data-cy="cart-product">
       <div className="img-container">
-        <img
-          src={imgLoaded ? product?.image : DefaultImage}
-          alt={product?.name}
-          onLoad={() => setImageLoaded(true)}
-        />
+        <Image src={product?.image} alt={product?.name} />
       </div>
       <ProductInfo>
         <div className="text">
