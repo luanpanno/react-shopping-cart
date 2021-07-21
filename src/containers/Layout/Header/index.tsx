@@ -38,7 +38,7 @@ const Header = () => {
               <LikedProductsButton
                 onClick={() => setOpenList((state) => !state)}
                 data-for="liked-button"
-                data-cy="liked-button"
+                data-cy="liked-products-button"
                 data-tip="Lista de Favoritos"
               >
                 {likedProducts?.length > 0 && products?.length > 0 && (
