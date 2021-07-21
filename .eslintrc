@@ -7,8 +7,8 @@
     "plugin:react/recommended",
     "plugin:cypress/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint", "import-helpers"],
-  "env": { "browser": true, "es6": true },
+  "plugins": ["react", "@typescript-eslint", "import-helpers", "cypress"],
+  "env": { "browser": true, "es6": true, "cypress/globals": true },
   "globals": { "Atomics": "readonly", "SharedArrayBuffer": "readonly" },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -17,6 +17,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
+  "ignorePatterns": ["config-overrides.js"],
   "rules": {
     "react/prop-types": "off",
     "max-len": ["error", 120],

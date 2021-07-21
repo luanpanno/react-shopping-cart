@@ -9,10 +9,11 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
     "cy:run": "yarn run cypress run",
     "cy:open": "yarn run cypress open",
-    "test": "start-server-and-test start http://localhost:3000 cy:run"
+    "test": "start-server-and-test start http://localhost:3000 cy:run",
+    "prebuild": "yarn test",
+    "build": "react-app-rewired build"
   },
   "eslintConfig": {
     "extends": [
