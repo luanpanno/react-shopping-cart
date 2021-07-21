@@ -61,9 +61,11 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
 
   return (
     <Container data-cy="cart-product">
-      <div className="img-container">
-        <Image src={product?.image} alt={product?.name} />
-      </div>
+      <Image
+        src={product?.image}
+        alt={product?.name}
+        className="img-container"
+      />
       <ProductInfo>
         <div className="text">
           <span className="name">{product?.name}</span>

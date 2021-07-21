@@ -52,7 +52,7 @@ export const Content = styled.div`
     }
   }
 
-  @media screen and (max-width: 580px) {
+  @media screen and (max-width: 620px) {
     padding: 0 var(--gap-medium);
   }
 `;

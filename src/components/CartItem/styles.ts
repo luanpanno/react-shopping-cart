@@ -22,6 +22,24 @@ export const Container = styled.div`
       width: 100%;
     }
   }
+
+  @media screen and (max-width: 560px) {
+    align-items: center;
+    justify-content: center;
+
+    .img-container {
+      align-self: flex-start;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    display: flex;
+    flex-direction: column;
+
+    .img-container {
+      align-self: center;
+    }
+  }
 `;
 
 export const ProductInfo = styled.div`
@@ -38,6 +56,20 @@ export const ProductInfo = styled.div`
   .stock {
     color: var(--colors-grey1);
     font-size: var(--font-small);
+  }
+
+  @media screen and (max-width: 560px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: var(--gap-regular);
+  }
+
+  @media screen and (max-width: 450px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: var(--gap-big);
+    align-items: center;
+    justify-items: center;
   }
 `;
 
@@ -89,4 +121,8 @@ export const Price = styled.span`
   text-align: right;
   color: var(--colors-primary);
   font-weight: bold;
+
+  @media screen and (max-width: 450px) {
+    margin-top: var(--gap-regular);
+  }
 `;

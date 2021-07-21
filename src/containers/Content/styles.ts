@@ -6,7 +6,7 @@ export const Container = styled.div`
   max-width: 1000px;
   padding: 0 var(--gap-extra);
 
-  @media screen and (max-width: 580px) {
+  @media screen and (max-width: 620px) {
     margin: var(--gap-medium) 0;
     padding: 0 var(--gap-small);
   }
@@ -28,6 +28,7 @@ export const Header = styled.header`
   }
 
   span {
+    text-align: right;
     font-size: var(--font-small);
   }
 `;
