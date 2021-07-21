@@ -31,9 +31,11 @@ const LikedProductsList = () => {
 
             return (
               <Item key={likedProduct?.id} data-cy="liked-product">
-                <div className="img-container">
-                  <Image src={likedProduct?.image} alt={likedProduct?.name} />
-                </div>
+                <Image
+                  src={likedProduct?.image}
+                  alt={likedProduct?.name}
+                  className="img-container"
+                />
                 <div className="text">
                   <span className="name">{likedProduct?.name}</span>
                   <span className="price">

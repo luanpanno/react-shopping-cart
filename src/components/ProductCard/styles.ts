@@ -18,22 +18,22 @@ export const Container = styled.div`
   &:hover {
     box-shadow: 4px 8px 4px 4px rgba(0, 0, 0, 0.1);
   }
-`;
 
-export const ImgContainer = styled.div`
-  width: 100%;
-  overflow: hidden;
-  border-top-left-radius: var(--radius-regular);
-  border-top-right-radius: var(--radius-regular);
-  height: 200px;
-
-  img {
-    height: 100%;
+  .img-container {
     width: 100%;
-    transition: all 200ms;
+    overflow: hidden;
+    border-top-left-radius: var(--radius-regular);
+    border-top-right-radius: var(--radius-regular);
+    height: 200px;
 
-    &:hover {
-      transform: scale(1.2);
+    img {
+      height: 100%;
+      width: 100%;
+      transition: all 200ms;
+
+      &:hover {
+        transform: scale(1.2);
+      }
     }
   }
 `;

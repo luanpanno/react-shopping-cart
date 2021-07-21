@@ -9,13 +9,7 @@ import { Product } from '@models/domain/Product';
 import { generateTooltipId } from '@utils/generateTooltipId';
 import { masks } from '@utils/masks';
 
-import {
-  Container,
-  ImgContainer,
-  Text,
-  LikeButton,
-  AddCartButton,
-} from './styles';
+import { Container, Text, LikeButton, AddCartButton } from './styles';
 
 interface Props {
   product: Product;
@@ -43,9 +37,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <Container data-cy="product-card">
-      <ImgContainer>
-        <Image src={product.image} alt={product.name} />
-      </ImgContainer>
+      <Image src={product.image} alt={product.name} className="img-container" />
       <Text>
         <div className="product-info">
           <div>
