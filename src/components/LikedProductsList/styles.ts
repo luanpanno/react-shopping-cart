@@ -27,6 +27,33 @@ export const Container = styled.div`
     flex-direction: column;
     row-gap: var(--gap-medium);
   }
+
+  @media screen and (max-width: 1120px) {
+    right: calc(-1vw - 24px);
+
+    &::before {
+      right: calc(-1vw + 54px);
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    right: calc(-1vw - 24px);
+
+    &::before {
+      right: calc(-1vw + 44px);
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    position: fixed;
+    top: 80px;
+    width: 100vw;
+    right: 0;
+
+    &::before {
+      right: calc(-1vw + 85px);
+    }
+  }
 `;
 
 export const Item = styled.li`
