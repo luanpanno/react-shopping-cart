@@ -121,14 +121,6 @@ describe('Cart', () => {
       cy.getByDataCy('increase-button', ':first').should('be.disabled');
     });
 
-    it('Should show error if theres a quantity 0', () => {
-      cy.getByDataCy('decrease-button', ':first').click();
-
-      cy.getByDataCy('quantity-field', ':first')
-        .should('have.css', 'border')
-        .and('eq', '1px solid rgb(230, 57, 70)');
-    });
-
     it('Should open confirm modal on delete click', () => {
       cy.getByDataCy('delete-product-button', ':first').click();
 

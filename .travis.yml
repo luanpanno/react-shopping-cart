@@ -2,13 +2,17 @@ language: node_js
 node_js:
   - 14
 cache:
-directories:
-  - ~/.npm
-  - ~/.cache
-override:
-  - yarn ci
-  - yarn run cy:run
+  # cache both npm modules and Cypress binary
+  directories:
+    - ~/.npm
+    - ~/.cache
+  # install dependencies and check that Cypress can run
+  override:
+    - yarn ci
+    - yarn run cy:verify
+
 script:
   - eslint src --ext .ts,.tsx
+  - yarn cypress install
   - yarn test
   - kill $(jobs -p) || true
