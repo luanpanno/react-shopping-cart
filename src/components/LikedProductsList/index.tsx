@@ -1,5 +1,4 @@
-import { RiCloseCircleFill } from 'react-icons/ri';
-
+import Icons from '@components/Icons';
 import Image from '@components/Image';
 import NoContentText from '@components/NoContentText';
 import Tooltip from '@components/Tooltip';
@@ -48,7 +47,7 @@ const LikedProductsList = () => {
                   data-tip="Remover"
                   data-cy="remove-liked-product"
                 >
-                  <RiCloseCircleFill />
+                  <Icons.Remove />
                 </button>
                 <Tooltip id={tooltipId} />
               </Item>

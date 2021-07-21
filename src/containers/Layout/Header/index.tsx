@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { RiHeartFill, RiShoppingCart2Fill } from 'react-icons/ri';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { Link } from 'react-router-dom';
 
 import LivenLogo from '@assets/imgs/logo-liven.webp';
+import Icons from '@components/Icons';
 import LikedProductsList from '@components/LikedProductsList';
 import NotificationLabel from '@components/NotificationLabel';
 import Searchbar from '@components/Searchbar';
@@ -47,7 +47,7 @@ const Header = () => {
                     value={likedProducts?.length}
                   />
                 )}
-                <RiHeartFill />
+                <Icons.HeartFill />
               </LikedProductsButton>
               <Tooltip id="liked-button" />
               {openList && <LikedProductsList />}
@@ -66,7 +66,7 @@ const Header = () => {
                 value={cartProductsAmount}
               />
             )}
-            <RiShoppingCart2Fill />
+            <Icons.CartFill />
           </CartLink>
           <Tooltip id="cart-button" />
         </Notifications>

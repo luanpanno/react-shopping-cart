@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { RiHeartLine, RiHeartFill } from 'react-icons/ri';
 
+import Icons from '@components/Icons';
 import Image from '@components/Image';
 import Tooltip from '@components/Tooltip';
 
@@ -58,7 +58,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
               data-tip="Favoritar"
               data-cy="like-button"
             >
-              {alreadyLiked ? <RiHeartFill /> : <RiHeartLine />}
+              {alreadyLiked ? <Icons.HeartFill /> : <Icons.HeartLine />}
             </LikeButton>
             <Tooltip id={tooltipId} />
           </div>

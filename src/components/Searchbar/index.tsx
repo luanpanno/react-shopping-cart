@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { RiCloseCircleFill, RiSearch2Line } from 'react-icons/ri';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import Icons from '@components/Icons';
 import Tooltip from '@components/Tooltip';
 
 import { urlSearchParams } from '@utils/urlSearchParams';
@@ -47,7 +47,7 @@ const Searchbar = () => {
               data-tip="Limpar pesquisa"
               data-cy="clear-search"
             >
-              <RiCloseCircleFill />
+              <Icons.Remove />
             </button>
             <Tooltip id="searchbar-reset" />
           </>
@@ -61,7 +61,7 @@ const Searchbar = () => {
         data-tip="Pesquisar"
         data-cy="search-button"
       >
-        <RiSearch2Line />
+        <Icons.Search />
       </SearchButton>
       <Tooltip id="searchbar-search" />
     </Container>

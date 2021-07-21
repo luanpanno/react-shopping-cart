@@ -1,5 +1,6 @@
 import { confirmAlert } from 'react-confirm-alert';
-import { RiCloseFill } from 'react-icons/ri';
+
+import Icons from '@components/Icons';
 
 import { Container, Header, Main, Button, ButtonOutline } from './styles';
 
@@ -19,7 +20,7 @@ const ConfirmAlert: React.FC<Props> = ({ text, close, action }) => {
     <Container>
       <Header>
         <button type="button" onClick={close}>
-          <RiCloseFill />
+          <Icons.Close />
         </button>
       </Header>
       <Main>
