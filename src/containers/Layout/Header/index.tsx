@@ -33,8 +33,8 @@ const Header = () => {
         <Searchbar className="searchbar" />
 
         <Notifications className="notifications">
-          <OutsideClickHandler onOutsideClick={() => setOpenList(false)}>
-            <div className="liked">
+          <div className="liked">
+            <OutsideClickHandler onOutsideClick={() => setOpenList(false)}>
               <LikedProductsButton
                 onClick={() => setOpenList((state) => !state)}
                 data-for="liked-button"
@@ -51,8 +51,8 @@ const Header = () => {
               </LikedProductsButton>
               <Tooltip id="liked-button" />
               {openList && <LikedProductsList />}
-            </div>
-          </OutsideClickHandler>
+            </OutsideClickHandler>
+          </div>
 
           <CartLink
             to="/carrinho"

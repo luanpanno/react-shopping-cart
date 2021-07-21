@@ -6,23 +6,18 @@ export const Container = styled.header`
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* height: 75px; */
   padding: var(--gap-medium) 0;
   background-color: var(--colors-primary);
   position: sticky;
   top: 0;
   z-index: 10;
-
-  .liked {
-    position: relative;
-  }
 `;
 
 export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  column-gap: var(--gap-big);
+  column-gap: var(--gap-large);
   width: 100%;
   max-width: 1000px;
   padding: 0 var(--gap-extra);
@@ -38,6 +33,7 @@ export const Content = styled.div`
     grid-template-areas:
       'logo notifications'
       'searchbar searchbar';
+    gap: var(--gap-regular);
 
     .logo {
       grid-area: logo;
@@ -60,16 +56,31 @@ export const Content = styled.div`
 export const Notifications = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  column-gap: var(--gap-big);
   justify-content: flex-end;
+  column-gap: var(--gap-medium);
+
+  .liked {
+    position: relative;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: var(--gap-large);
+      width: var(--gap-large);
+
+      & > button {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+      }
+    }
+  }
 `;
 
 export const ButtonStyles = css`
   color: var(--colors-primary);
-  border-radius: 100%;
-  height: var(--gap-large);
-  width: var(--gap-large);
+  border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,6 +99,8 @@ export const ButtonStyles = css`
 
 export const CartLink = styled(Link)`
   ${ButtonStyles};
+  height: var(--gap-large);
+  width: var(--gap-large);
 `;
 
 export const LikedProductsButton = styled.button`
