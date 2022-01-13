@@ -2,7 +2,6 @@ import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { Link } from 'react-router-dom';
 
-import LivenLogo from '@assets/imgs/logo-liven.webp';
 import Icons from '@components/Icons';
 import LikedProductsList from '@components/LikedProductsList';
 import NotificationLabel from '@components/NotificationLabel';
@@ -27,7 +26,7 @@ const Header = () => {
     <Container>
       <Content>
         <Link to="/" className="logo">
-          <img src={LivenLogo} alt="logo" />
+          <Icons.Shop />
         </Link>
 
         <Searchbar className="searchbar" />

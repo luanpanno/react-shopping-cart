@@ -1,10 +1,10 @@
-# 🚀 LivenShop
+# 🚀 Shopping Cart
 
-## Processo Seletivo para a Liven Tech
+## Feito para o processo seletivo da Liven Tech
 
 Por Luan Panno
 
-[![Build Status](https://www.travis-ci.com/luanpanno/teste-liven.svg?token=5qXE3ZkgbPXsh4vZ5czV&branch=main)](https://www.travis-ci.com/luanpanno/teste-liven) [![Netlify Status](https://api.netlify.com/api/v1/badges/e8f5336e-6f80-43ee-a474-795f63991345/deploy-status)](https://app.netlify.com/sites/livenshop-lp/deploys)
+[![Build Status](https://www.travis-ci.com/luanpanno/teste-liven.svg?token=5qXE3ZkgbPXsh4vZ5czV&branch=main)](https://www.travis-ci.com/luanpanno/teste-liven) [![Netlify Status](https://api.netlify.com/api/v1/badges/e8f5336e-6f80-43ee-a474-795f63991345/deploy-status)](https://app.netlify.com/sites/shopping-cart-lp/deploys)
 
 ## 🔧 Como rodar o projeto
 

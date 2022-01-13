@@ -5,6 +5,7 @@ import {
   RiHeartFill,
   RiSearch2Line,
   RiShoppingCart2Fill,
+  RiShoppingBagFill,
 } from 'react-icons/ri';
 
 const Icons = {
@@ -14,6 +15,7 @@ const Icons = {
   Search: () => <RiSearch2Line />,
   Close: () => <RiCloseFill />,
   Remove: () => <RiCloseCircleFill />,
+  Shop: () => <RiShoppingBagFill />,
 };
 
 export default Icons;

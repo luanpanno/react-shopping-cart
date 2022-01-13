@@ -1,5 +1,3 @@
-import Logo from '@assets/imgs/logo-liven.webp';
-
 import { Container, Content, Button, ErrorContainer } from './styles';
 
 const ErrorBoundaryFallback = () => {
@@ -14,20 +12,19 @@ const ErrorBoundaryFallback = () => {
   return (
     <Container>
       <Content>
-        <img src={Logo} alt="logo-liven" />
         <h1>Oops! Algo deu errado</h1>
         <ErrorContainer>
           <p>
-            Desculpe, algo de errado aconteceu nesta página. Para mais
-            informações, contate a equipe técnica responsável
+            Desculpe, algo de errado aconteceu nesta página. Tente novamente
+            mais tarde.
           </p>
         </ErrorContainer>
         <div className="buttons">
           <Button type="button" onClick={backPage}>
-            Back Page
+            Voltar
           </Button>
           <Button type="button" onClick={refreshPage}>
-            Refresh Page
+            Atualizar
           </Button>
         </div>
       </Content>

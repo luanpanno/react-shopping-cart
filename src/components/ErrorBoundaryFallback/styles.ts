@@ -24,13 +24,6 @@ export const Content = styled.div`
   max-width: 300px;
   padding: var(--gap-large);
   border-radius: var(--radius-regular);
-  position: relative;
-
-  img {
-    height: 90px;
-    position: absolute;
-    top: -128px;
-  }
 
   h1 {
     font-size: var(--font-big);

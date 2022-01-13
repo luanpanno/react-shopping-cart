@@ -26,6 +26,13 @@ export const Content = styled.div`
     height: 50px;
   }
 
+  .logo {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+  }
+
   @media screen and (max-width: 750px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
